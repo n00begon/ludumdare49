@@ -6,6 +6,7 @@ var rng = RandomNumberGenerator.new()
 var walkCount = 100
 var health = 100
 var food = {}
+var debug = true
 
 # TODO:(Leon) this sucks. can we just extend entity and put an type enum on them?
 # also can thses functions be global?
@@ -19,6 +20,19 @@ func is_prey(entity):
 	return entity.name.match("prey*")
 
 func _physics_process(delta):
+	# HACK (Leon): yes this sucks. i don't know how to get the label good
+	if debug:
+		var label = self.get_child(4)
+		var labels = PoolStringArray([
+			"health : %s",
+			"walkCount : %d"
+		])
+
+		var text = labels.join("\n")
+		var label_str = text % [health, walkCount]
+		label.set_text(label_str)
+
+	
 	if food.values().size() > 0:
 		var closest_food = null
 		var closest_distance = 100000000000000000
