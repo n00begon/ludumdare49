@@ -1,8 +1,8 @@
 extends Node2D
 
-const MIN_SPAWN_INTERVAL_MS = 300
+const MIN_SPAWN_INTERVAL_MS = 200
 
-var muskDeer = load("res://MuskDeer.tscn")
+var deerScene = load("res://MuskDeer.tscn")
 var bearScene = load("res://Bear.tscn")
 var rng = RandomNumberGenerator.new()
 
@@ -14,11 +14,10 @@ func _ready():
 	OS.window_fullscreen = true
 
 func _spawn_deer():
-		var newDeer = muskDeer.instance()
+		var newDeer = deerScene.instance()
 		newDeer.name = "prey_deer_" + str(deerCount)
 		var viewport = get_viewport().size
 		newDeer.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
-		print(newDeer.name)
 		get_parent().add_child(newDeer)
 		deerCount += 1
 
@@ -27,7 +26,6 @@ func _spawn_bear():
 		newBear.name = "pred_bear_" + str(bearCount)
 		var viewport = get_viewport().size
 		newBear.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
-		print(newBear.name)
 		get_parent().add_child(newBear)
 		bearCount += 1
 
