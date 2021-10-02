@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="Game" type="Node2D"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+margin_left = 3.0
+margin_top = -3.0
+margin_right = 619.0
+margin_bottom = 335.0
+text = "Forest Game"
+__meta__ = {
+"_edit_use_anchors_": false
+}
