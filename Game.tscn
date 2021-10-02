@@ -16,11 +16,11 @@ __meta__ = {
 }
 
 [node name="Bear" type="Sprite" parent="."]
-position = Vector2( 427.097, 276.687 )
-scale = Vector2( 0.0989611, 0.0989611 )
+position = Vector2( 406.857, 296.926 )
+scale = Vector2( 0.178021, 0.178021 )
 texture = ExtResource( 1 )
 
 [node name="Deer" type="Sprite" parent="."]
-position = Vector2( 510.044, 269.616 )
-scale = Vector2( 0.157561, 0.157561 )
+position = Vector2( 289.395, 290.651 )
+scale = Vector2( 0.283077, 0.283077 )
 texture = ExtResource( 2 )
