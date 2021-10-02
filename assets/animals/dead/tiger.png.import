@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new-bear-dead.png-4cc5832bb16d6bb3575fccdf0e9969b5.stex"
+path="res://.import/tiger.png-3ababd0090902633eac360675b66336f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals/bear/new-bear-dead.png"
-dest_files=[ "res://.import/new-bear-dead.png-4cc5832bb16d6bb3575fccdf0e9969b5.stex" ]
+source_file="res://assets/animals/dead/tiger.png"
+dest_files=[ "res://.import/tiger.png-3ababd0090902633eac360675b66336f.stex" ]
 
 [params]
 
