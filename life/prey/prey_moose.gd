@@ -78,7 +78,7 @@ func _physics_process(delta):
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
 		queue_free()
-		game._spawn_dteer(true)
+		game._spawn_moose(true)
 
 
 func _on_VisionArea_body_entered(body):
