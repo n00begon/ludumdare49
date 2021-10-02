@@ -3,10 +3,10 @@
 [node name="Game" type="Node2D"]
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 3.0
-margin_top = -3.0
-margin_right = 619.0
-margin_bottom = 335.0
+margin_left = 477.842
+margin_top = 23.4695
+margin_right = 569.842
+margin_bottom = 42.4695
 text = "Forest Game"
 __meta__ = {
 "_edit_use_anchors_": false
