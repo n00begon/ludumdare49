@@ -1,4 +1,6 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://bear.png" type="Texture" id=1]
 
 [node name="Game" type="Node2D"]
 
@@ -11,3 +13,8 @@ text = "Forest Game"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Bear" type="Sprite" parent="."]
+position = Vector2( 427.097, 276.687 )
+scale = Vector2( 0.0989611, 0.0989611 )
+texture = ExtResource( 1 )
