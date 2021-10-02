@@ -26,9 +26,13 @@ func _physics_process(delta):
 	if health <= 0:
 		# TODO(Leon): should turn into dead musk deer i guess?
 		queue_free()
-			
+
 	move_and_slide(velocity)
-	
+
+	var game = get_parent().get_node("Game")
+	if game._is_outside_viewport(position):
+		queue_free()
+		game._spawn_deer(true)
 
 func _on_VisionArea_body_entered(body):
 	if body.name.match("plant*"):
@@ -39,7 +43,6 @@ func _on_VisionArea_body_exited(body):
 	if body.name.match("plant*"):
 			if food.has(body.name):
 				food.erase(body.name)
-
 
 func _on_EatRange_body_entered(body):
 	if body.name.match("pred*"):
