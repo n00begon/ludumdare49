@@ -9,12 +9,15 @@ script = ExtResource( 3 )
 
 [node name="Bear" parent="." instance=ExtResource( 4 )]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-margin_left = 477.842
-margin_top = 23.4695
-margin_right = 569.842
-margin_bottom = 42.4695
-text = "Forest Game"
+[node name="Controls" type="RichTextLabel" parent="."]
+margin_left = 911.0
+margin_top = 26.0
+margin_right = 1064.0
+margin_bottom = 143.0
+text = "Controls
+b -- spawn bear
+d -- spawn deer
+q -- quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
