@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://bear.png" type="Texture" id=1]
-[ext_resource path="res://deer.png" type="Texture" id=2]
+[ext_resource path="res://collision.tres" type="Shape2D" id=1]
+[ext_resource path="res://Animal.gd" type="Script" id=3]
 
 [node name="Game" type="Node2D"]
 
@@ -15,12 +15,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Bear" type="Sprite" parent="."]
+[node name="Bear" type="KinematicBody2D" parent="."]
 position = Vector2( 406.857, 296.926 )
 scale = Vector2( 0.178021, 0.178021 )
-texture = ExtResource( 1 )
+script = ExtResource( 3 )
 
-[node name="Deer" type="Sprite" parent="."]
-position = Vector2( 289.395, 290.651 )
-scale = Vector2( 0.283077, 0.283077 )
-texture = ExtResource( 2 )
+[node name="Sprite" type="Sprite" parent="Bear"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bear"]
+position = Vector2( -2285.44, -1667.93 )
+scale = Vector2( 5.61731, 5.61731 )
+shape = ExtResource( 1 )
