@@ -21,7 +21,9 @@ func _spawn_moose(forceSpawn):
 	_spawn("prey", "mooseScene", mooseScene, "ui_moose", forceSpawn)
 
 func _spawn_bear(forceSpawn):
-	_spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
+	var bear = _spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
+	if bear:
+		bear.gender = rng.randi_range(0, 1)
 
 func _spawn_dead(name, position):
 	var newObj = deadScene.instance()
@@ -60,6 +62,7 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 	self.add_child(newObj)
 	counters[prefix] = counters.get(prefix, 0) + 1
 	lastSpawnTime = OS.get_ticks_msec()
+	return newObj
 
 func _process(delta):
 	# Quit on ESC or Q
