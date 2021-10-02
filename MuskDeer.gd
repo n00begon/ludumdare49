@@ -33,11 +33,12 @@ func _physics_process(delta):
 		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
-			"walkCount : %d"
+			"walkCount : %d",
+			"chasing food? : %d"
 		])
 
 		var text = labels.join("\n")
-		var label_str = text % [health, walkCount]
+		var label_str = text % [health, walkCount, food.size()]
 		label.set_text(label_str)
 
 	
