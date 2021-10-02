@@ -14,6 +14,7 @@ margin_bottom = 143.0
 text = "Controls
 b -- spawn bear
 d -- spawn deer
+t -- spawn bush
 q -- quit"
 __meta__ = {
 "_edit_use_anchors_": false
