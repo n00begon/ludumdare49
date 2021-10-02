@@ -13,7 +13,6 @@ func find_label():
 
 	return null
 
-# TODO(Leon): restore our health over time (but capped at health max)
 func _physics_process(delta):
 	if debug:
 		# HACK(Leon) I'm sorry :(

@@ -6,6 +6,7 @@ var food = null
 var rng = RandomNumberGenerator.new()
 var walkCount = 100
 var debug = true
+var health = 100
 
 func find_label():
 	var nc = self.get_child_count()
@@ -17,14 +18,16 @@ func find_label():
 	return null
 
 func _physics_process(delta):
+	health -= 0.05
 	if debug:
 		var label = find_label()
 		var labels = PoolStringArray([
+			"health : %s",
 			"chasing food? : %s"
 		])
 
 		var text = labels.join("\n")
-		var label_str = text % [food != null]
+		var label_str = text % [health, food != null]
 		label.set_text(label_str)
 
 	if food:
@@ -36,6 +39,10 @@ func _physics_process(delta):
 			velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
 	move_and_slide(velocity)
 
+	if health <= 0:
+		queue_free()
+		# TODO(Leon) and make a tree
+ 
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
 		queue_free()
