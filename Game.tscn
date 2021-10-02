@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
+[ext_resource path="res://labelfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 
 [node name="Game" type="Node2D"]
@@ -9,15 +10,16 @@ script = ExtResource( 3 )
 z_index = 10
 
 [node name="Controls" type="RichTextLabel" parent="Node2D"]
-margin_left = 910.056
-margin_top = 26.0
-margin_right = 1063.06
-margin_bottom = 143.0
+margin_left = 28.973
+margin_top = 13.5946
+margin_right = 543.973
+margin_bottom = 332.595
+custom_fonts/normal_font = ExtResource( 1 )
 text = "Controls
-b -- spawn bear
-d -- spawn deer
-t -- spawn bush
-q -- quit"
+b    spawn bear
+d    spawn deer
+t    spawn bush
+q    quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
