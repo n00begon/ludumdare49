@@ -69,13 +69,17 @@ func _physics_process(delta):
 				game._spawn_bear(true)
 
 	if health <= 0:
-		queue_free()
-		# TODO(Leon) and make a tree
+		return self.die()
  
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
 		queue_free()
 		game._spawn_bear(true)
+
+func die():
+	var game = get_parent()
+	game._spawn_dead("bear", position)
+	queue_free()
 
 func _on_VisionArea_body_entered(body):
 	if body.name.begins_with("prey"):
