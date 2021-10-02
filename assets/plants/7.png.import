@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/001sapling.png-721cce9fe36e52718bb116597790afdc.stex"
+path="res://.import/7.png-5943fe805e5e1c1c427d105fa94387ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plants/001sapling.png"
-dest_files=[ "res://.import/001sapling.png-721cce9fe36e52718bb116597790afdc.stex" ]
+source_file="res://assets/plants/7.png"
+dest_files=[ "res://.import/7.png-5943fe805e5e1c1c427d105fa94387ca.stex" ]
 
 [params]
 

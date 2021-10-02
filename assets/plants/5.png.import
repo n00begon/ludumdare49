@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/triangle-tree.png-380a4fd7296ec3e3e40246acd596ae81.stex"
+path="res://.import/5.png-bc796ae02758e4b702ef0d0fb1f2b74b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plants/triangle-tree.png"
-dest_files=[ "res://.import/triangle-tree.png-380a4fd7296ec3e3e40246acd596ae81.stex" ]
+source_file="res://assets/plants/5.png"
+dest_files=[ "res://.import/5.png-bc796ae02758e4b702ef0d0fb1f2b74b.stex" ]
 
 [params]
 

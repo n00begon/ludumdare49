@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/plants/new-bush.png" type="Texture" id=1]
+[ext_resource path="res://assets/plants/5.png" type="Texture" id=1]
 [ext_resource path="res://plant_bush.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]

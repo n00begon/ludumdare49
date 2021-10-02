@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tall-tree.png-df0865a3e3f7d9e96bedaab81fb4c2b0.stex"
+path="res://.import/4.png-cff8b313fcc3457f9d45ddf15096239b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plants/tall-tree.png"
-dest_files=[ "res://.import/tall-tree.png-df0865a3e3f7d9e96bedaab81fb4c2b0.stex" ]
+source_file="res://assets/plants/4.png"
+dest_files=[ "res://.import/4.png-cff8b313fcc3457f9d45ddf15096239b.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new-bush.png-6a6ddcb97de4913027636eb2ff0346d0.stex"
+path="res://.import/6.png-5d5eb9738cb1e3d9316dd54541cbd0ee.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/plants/new-bush.png"
-dest_files=[ "res://.import/new-bush.png-6a6ddcb97de4913027636eb2ff0346d0.stex" ]
+source_file="res://assets/plants/6.png"
+dest_files=[ "res://.import/6.png-5d5eb9738cb1e3d9316dd54541cbd0ee.stex" ]
 
 [params]
 
