@@ -20,6 +20,7 @@ func is_pred(entity):
 func is_prey(entity):
 	return entity.name.match("prey*")
 
+
 func find_label():
 	var nc = self.get_child_count()
 	for i in nc:

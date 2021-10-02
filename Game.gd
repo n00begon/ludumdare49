@@ -20,7 +20,9 @@ func _spawn_moose(forceSpawn):
 	_spawn("prey", "mooseScene", mooseScene, "ui_moose", forceSpawn)
 
 func _spawn_bear(forceSpawn):
-	_spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
+	var bear = _spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
+	if bear:
+		bear.gender = rng.randi_range(0, 1)
 
 func _spawn_plant(forceSpawn):
 	var plant_type = rng.randi_range(1, 3)
@@ -31,6 +33,7 @@ func _spawn_plant(forceSpawn):
 			_spawn("plant", "grass", grassScene, "ui_plant", forceSpawn)
 		3:
 			_spawn("plant", "tree", treeScene, "ui_plant", forceSpawn)
+
 func _spawn(type, name, scene, actionKey, forceSpawn):
 	if not Input.is_action_pressed(actionKey) and not forceSpawn:
 		return
@@ -51,6 +54,7 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 	self.add_child(newObj)
 	counters[prefix] = counters.get(prefix, 0) + 1
 	lastSpawnTime = OS.get_ticks_msec()
+	return newObj
 
 func _process(delta):
 	# Quit on ESC or Q

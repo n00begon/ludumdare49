@@ -1,6 +1,9 @@
 class_name pred_bear
 extends KinematicBody2D
 
+const FEMALE = 0
+const MALE = 1
+
 var run_speed = 250
 var velocity = Vector2.ZERO
 var food = null
@@ -8,6 +11,11 @@ var rng = RandomNumberGenerator.new()
 var walkCount = 100
 var debug = true
 var health = 100
+var gender = FEMALE
+
+# NOTE : our lifetime is short so this means one baby only
+const MAX_PREGNANCY_COOLDOWN = 100
+var pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
 
 func find_label():
 	var nc = self.get_child_count()
@@ -18,17 +26,23 @@ func find_label():
 
 	return null
 
+func is_bear(entity):
+	return entity.name.split("_")[1] == "bear"
+
 func _physics_process(delta):
 	health -= 0.05
+	pregnancy_cooldown -= 1
 	if debug:
 		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
-			"chasing food? : %s"
+			"chasing food? : %s",
+			"gender : %s",
+			"pregnancy cooldown : %s"
 		])
 
 		var text = labels.join("\n")
-		var label_str = text % [health, food != null]
+		var label_str = text % [health, food != null, gender, pregnancy_cooldown]
 		label.set_text(label_str)
 
 	if food:
@@ -39,6 +53,20 @@ func _physics_process(delta):
 			walkCount = 100
 			velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
 	move_and_slide(velocity)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		var ent = collision.collider
+		print(ent.name)
+		if is_bear(ent) and ent.gender != self.gender:
+			# which one is the female
+			var female = ent
+			if female.gender != FEMALE:
+				female = self
+
+			if female.pregnancy_cooldown < 0:
+				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
+				var game = get_parent()
+				game._spawn_bear(true)
 
 	if health <= 0:
 		queue_free()
