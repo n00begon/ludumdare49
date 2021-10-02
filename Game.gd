@@ -17,6 +17,10 @@ func _spawn_deer():
 		get_parent().add_child(newDeer)	
 
 func _process(delta):
+	# Quit on ESC
+	if Input.is_action_pressed("ui_cancel") or Input.is_action_pressed("ui_quit"):
+		get_tree().quit()
+
 	if OS.get_ticks_msec() - lastSpawnTime > MIN_SPAWN_INTERVAL_MS:
 		if Input.is_action_pressed("ui_deer"):
 			_spawn_deer()
