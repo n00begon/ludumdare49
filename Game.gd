@@ -1,9 +1,10 @@
 extends Node2D
 
-const MIN_SPAWN_INTERVAL_MS = 100
+const MIN_SPAWN_INTERVAL_MS = 70
 
 var deerScene = load("res://MuskDeer.tscn")
 var bearScene = load("res://Bear.tscn")
+var bushScene = load("res://Bush.tscn")
 var rng = RandomNumberGenerator.new()
 
 var counters = {}
@@ -17,6 +18,9 @@ func _spawn_deer():
 
 func _spawn_bear():
 	_spawn("pred", "bear", bearScene)
+	
+func _spawn_bush():
+	_spawn("plant", "bush", bushScene)
 
 func _spawn(type, name, scene):
 	var newObj = scene.instance()
@@ -39,4 +43,7 @@ func _process(delta):
 			lastSpawnTime = OS.get_ticks_msec()
 		elif Input.is_action_pressed("ui_bear"):
 			_spawn_bear()
+			lastSpawnTime = OS.get_ticks_msec()
+		elif Input.is_action_pressed("ui_bush"):
+			_spawn_bush()
 			lastSpawnTime = OS.get_ticks_msec()
