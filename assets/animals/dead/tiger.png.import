@@ -2,24 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-<<<<<<< HEAD:assets/animals/moose/new-deer-dead.png.import
-path="res://.import/new-deer-dead.png-cb7777c775202c326cb54af3d7f107a3.stex"
-=======
 path="res://.import/tiger.png-3ababd0090902633eac360675b66336f.stex"
->>>>>>> 859e6049750634cc33033ecef5db2797cab70f00:assets/animals/dead/tiger.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-<<<<<<< HEAD:assets/animals/moose/new-deer-dead.png.import
-source_file="res://assets/animals/moose/new-deer-dead.png"
-dest_files=[ "res://.import/new-deer-dead.png-cb7777c775202c326cb54af3d7f107a3.stex" ]
-=======
 source_file="res://assets/animals/dead/tiger.png"
 dest_files=[ "res://.import/tiger.png-3ababd0090902633eac360675b66336f.stex" ]
->>>>>>> 859e6049750634cc33033ecef5db2797cab70f00:assets/animals/dead/tiger.png.import
 
 [params]
 
