@@ -17,7 +17,9 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 
 func _on_VisionArea_body_entered(body):
-	food = body
+	if body.name == "bush":
+		food = body
 
 func _on_VisionArea_body_exited(body):
-	food = null
+	if body.name == "bush":
+		food = null
