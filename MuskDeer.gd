@@ -19,10 +19,18 @@ func is_pred(entity):
 func is_prey(entity):
 	return entity.name.match("prey*")
 
+func find_label():
+	var nc = self.get_child_count()
+	for i in nc:
+		var c = self.get_child(i)
+		if c.is_class("Label"):
+			return c
+
+	return null
+
 func _physics_process(delta):
-	# HACK (Leon): yes this sucks. i don't know how to get the label good
 	if debug:
-		var label = self.get_child(4)
+		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
 			"walkCount : %d"

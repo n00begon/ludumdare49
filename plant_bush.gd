@@ -4,11 +4,20 @@ var rng = RandomNumberGenerator.new()
 var health = 100
 var debug = true
 
+func find_label():
+	var nc = self.get_child_count()
+	for i in nc:
+		var c = self.get_child(i)
+		if c.is_class("Label"):
+			return c
+
+	return null
+
 # TODO(Leon): restore our health over time (but capped at health max)
 func _physics_process(delta):
 	if debug:
 		# HACK(Leon) I'm sorry :(
-		var label = self.get_child(3)
+		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s"
 		])
