@@ -1,35 +1,32 @@
 extends Node2D
 
-const MIN_SPAWN_INTERVAL_MS = 300
+const MIN_SPAWN_INTERVAL_MS = 100
 
-var muskDeer = load("res://MuskDeer.tscn")
+var deerScene = load("res://MuskDeer.tscn")
 var bearScene = load("res://Bear.tscn")
 var rng = RandomNumberGenerator.new()
 
-var deerCount = 0
-var bearCount = 0
+var counters = {}
 var lastSpawnTime = 0
 
 func _ready():
 	OS.window_fullscreen = true
 
 func _spawn_deer():
-		var newDeer = muskDeer.instance()
-		newDeer.name = "prey_deer_" + str(deerCount)
-		var viewport = get_viewport().size
-		newDeer.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
-		print(newDeer.name)
-		get_parent().add_child(newDeer)
-		deerCount += 1
+	_spawn("prey", "deer", deerScene)
 
 func _spawn_bear():
-		var newBear = bearScene.instance()
-		newBear.name = "pred_bear_" + str(bearCount)
-		var viewport = get_viewport().size
-		newBear.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
-		print(newBear.name)
-		get_parent().add_child(newBear)
-		bearCount += 1
+	_spawn("pred", "bear", bearScene)
+
+func _spawn(type, name, scene):
+	var newObj = scene.instance()
+	var prefix = type + "_" + name
+	newObj.name = prefix + "_" + str(counters.get(prefix, 0))
+	print("Spawn: " + newObj.name)
+	var viewport = get_viewport().size
+	newObj.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
+	get_parent().add_child(newObj)
+	counters[prefix] = counters.get(prefix, 0) + 1
 
 func _process(delta):
 	# Quit on ESC or Q
