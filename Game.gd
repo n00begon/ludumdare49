@@ -13,8 +13,10 @@ func _ready():
 
 func _spawn_deer():
 		var newDeer = muskDeer.instance()
+		newDeer.name = "prey_deer_" + str(deerCount)
 		var viewport = get_viewport().size
 		newDeer.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
+		print(newDeer.name)
 		get_parent().add_child(newDeer)
 		deerCount += 1
 
