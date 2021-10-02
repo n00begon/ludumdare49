@@ -1,8 +1,8 @@
-class_name plant_bush
+class_name plant_grass
 extends KinematicBody2D
 
 var rng = RandomNumberGenerator.new()
-var health = 30
+var health = 20
 var debug = true
 
 func find_label():

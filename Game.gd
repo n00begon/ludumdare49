@@ -6,6 +6,8 @@ const SPAWN_VIEWPORT_BORDER_PADDING = 30
 var mooseScene = load("res://life/prey/prey_moose.tscn")
 var bearScene = load("res://life/pred/pred_bear.tscn")
 var bushScene = load("res://life/plant/plant_bush.tscn")
+var grassScene = load("res://life/plant/plant_grass.tscn")
+var treeScene = load("res://life/plant/plant_tree.tscn")
 var rng = RandomNumberGenerator.new()
 
 var counters = {}
@@ -20,9 +22,15 @@ func _spawn_moose(forceSpawn):
 func _spawn_bear(forceSpawn):
 	_spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
 
-func _spawn_bush(forceSpawn):
-	_spawn("plant", "bush", bushScene, "ui_plant", forceSpawn)
-
+func _spawn_plant(forceSpawn):
+	var plant_type = rng.randi_range(1, 3)
+	match plant_type:
+		1:
+			_spawn("plant", "bush", bushScene, "ui_plant", forceSpawn)
+		2:
+			_spawn("plant", "grass", grassScene, "ui_plant", forceSpawn)
+		3:
+			_spawn("plant", "tree", treeScene, "ui_plant", forceSpawn)
 func _spawn(type, name, scene, actionKey, forceSpawn):
 	if not Input.is_action_pressed(actionKey) and not forceSpawn:
 		return
@@ -30,8 +38,6 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 		return
 
 	var newObj = scene.instance()
-	if type == 'plant':
-		newObj.get_node("Sprite").texture = load("res://assets/plants/" + str(rng.randi() % 5 + 1) + ".png")
 	var prefix = type + "_" + name
 	newObj.name = prefix + "_" + str(counters.get(prefix, 0))
 	print("Spawn: " + newObj.name)
@@ -53,4 +59,4 @@ func _process(delta):
 
 	_spawn_moose(false)
 	_spawn_bear(false)
-	_spawn_bush(false)
+	_spawn_plant(false)

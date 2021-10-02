@@ -15,6 +15,16 @@ _global_script_classes=[ {
 "path": "res://life/plant/plant_bush.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "plant_grass",
+"language": "GDScript",
+"path": "res://life/plant/plant_grass.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "plant_tree",
+"language": "GDScript",
+"path": "res://life/plant/plant_tree.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "pred_bear",
 "language": "GDScript",
 "path": "res://life/pred/pred_bear.gd"
@@ -26,6 +36,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "plant_bush": "",
+"plant_grass": "",
+"plant_tree": "",
 "pred_bear": "",
 "prey_moose": ""
 }
