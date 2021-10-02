@@ -25,7 +25,7 @@ func _spawn_bear(forceSpawn):
 
 func _spawn_dead(name, position):
 	var newObj = deadScene.instance()
-	var texture = load("res://assets/animals/dead/" + name + ".png")
+	var texture = get_resized_texture(load("res://assets/animals/dead/" + name + ".png"), 0.25)
 	newObj.set_global_position(position)
 	newObj.texture = texture
 	self.add_child(newObj)
@@ -69,3 +69,10 @@ func _process(delta):
 	_spawn_moose(false)
 	_spawn_bear(false)
 	_spawn_plant(false)
+
+func get_resized_texture(t: Texture, scale: float):
+	var image = t.get_data()
+	image.resize(image.get_width() * scale, image.get_height() * scale)
+	var itex = ImageTexture.new()
+	itex.create_from_image(image)
+	return itex
