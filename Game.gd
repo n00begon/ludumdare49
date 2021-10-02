@@ -5,12 +5,11 @@ const MIN_SPAWN_INTERVAL_MS = 300
 var muskDeer = load("res://MuskDeer.tscn")
 var rng = RandomNumberGenerator.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 var deerCount = 0
 var lastSpawnTime = 0
+
+func _ready():
+	OS.window_fullscreen = true
 
 func _spawn_deer():
 		var newDeer = muskDeer.instance()
