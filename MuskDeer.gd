@@ -29,8 +29,8 @@ func _physics_process(delta):
 
 	move_and_slide(velocity)
 
-	var game = get_parent().get_node("Game")
-	if game._is_outside_viewport(position):
+	var game = get_parent()
+	if Global.is_outside_viewport(position):
 		queue_free()
 		game._spawn_deer(true)
 

@@ -14,6 +14,10 @@ config/name="ludumdare49"
 run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [input]
 
 ui_bear={

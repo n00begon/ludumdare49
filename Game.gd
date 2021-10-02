@@ -1,4 +1,4 @@
-extends Node2D
+extends YSort
 
 const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
@@ -23,10 +23,6 @@ func _spawn_bear(forceSpawn):
 func _spawn_bush(forceSpawn):
 	_spawn("plant", "bush", bushScene, "ui_bush", forceSpawn)
 
-func _is_outside_viewport(pos):
-	var viewport = get_viewport().size
-	return pos.x < 0 || pos.y < 0 || pos.x > viewport.x || pos.y > viewport.y
-
 func _spawn(type, name, scene, actionKey, forceSpawn):
 	if not Input.is_action_pressed(actionKey) and not forceSpawn:
 		return
@@ -46,7 +42,7 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
 		)
 	)
-	get_parent().add_child(newObj)
+	self.add_child(newObj)
 	counters[prefix] = counters.get(prefix, 0) + 1
 	lastSpawnTime = OS.get_ticks_msec()
 
