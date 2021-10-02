@@ -1,3 +1,4 @@
+class_name prey_moose
 extends KinematicBody2D
 
 var run_speed = 250
@@ -77,7 +78,7 @@ func _physics_process(delta):
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
 		queue_free()
-		game._spawn_deer(true)
+		game._spawn_dteer(true)
 
 
 func _on_VisionArea_body_entered(body):

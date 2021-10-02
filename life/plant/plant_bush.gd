@@ -1,3 +1,4 @@
+class_name plant_bush
 extends KinematicBody2D
 
 var rng = RandomNumberGenerator.new()

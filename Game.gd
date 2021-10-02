@@ -3,9 +3,9 @@ extends YSort
 const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
-var deerScene = load("res://MuskDeer.tscn")
-var bearScene = load("res://Bear.tscn")
-var bushScene = load("res://Bush.tscn")
+var mooseScene = load("res://life/prey/prey_moose.tscn")
+var bearScene = load("res://life/pred/pred_bear.tscn")
+var bushScene = load("res://life/plant/plant_bush.tscn")
 var rng = RandomNumberGenerator.new()
 
 var counters = {}
@@ -14,14 +14,14 @@ var lastSpawnTime = 0
 func _ready():
 	OS.window_fullscreen = true
 
-func _spawn_deer(forceSpawn):
-	_spawn("prey", "deer", deerScene, "ui_deer", forceSpawn)
+func _spawn_moose(forceSpawn):
+	_spawn("prey", "mooseScene", mooseScene, "ui_moose", forceSpawn)
 
 func _spawn_bear(forceSpawn):
 	_spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
 
 func _spawn_bush(forceSpawn):
-	_spawn("plant", "bush", bushScene, "ui_bush", forceSpawn)
+	_spawn("plant", "bush", bushScene, "ui_plant", forceSpawn)
 
 func _spawn(type, name, scene, actionKey, forceSpawn):
 	if not Input.is_action_pressed(actionKey) and not forceSpawn:
@@ -51,6 +51,6 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel") or Input.is_action_pressed("ui_quit"):
 		get_tree().quit()
 
-	_spawn_deer(false)
+	_spawn_moose(false)
 	_spawn_bear(false)
 	_spawn_bush(false)

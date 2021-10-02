@@ -8,6 +8,28 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "plant_bush",
+"language": "GDScript",
+"path": "res://life/plant/plant_bush.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "pred_bear",
+"language": "GDScript",
+"path": "res://life/pred/pred_bear.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "prey_moose",
+"language": "GDScript",
+"path": "res://life/prey/prey_moose.gd"
+} ]
+_global_script_class_icons={
+"plant_bush": "",
+"pred_bear": "",
+"prey_moose": ""
+}
+
 [application]
 
 config/name="ludumdare49"
@@ -35,7 +57,17 @@ ui_quit={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_bush={
+ui_plant={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_moose={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":77,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_tiger={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"unicode":0,"echo":false,"script":null)
  ]

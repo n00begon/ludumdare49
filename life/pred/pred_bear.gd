@@ -1,3 +1,4 @@
+class_name pred_bear
 extends KinematicBody2D
 
 var run_speed = 250
