@@ -10,6 +10,7 @@ radius = 609.985
 radius = 67.0291
 
 [node name="MuskDeer" type="KinematicBody2D"]
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
