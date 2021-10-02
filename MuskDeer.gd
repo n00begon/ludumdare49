@@ -7,8 +7,16 @@ var walkCount = 100
 var health = 100
 var food = {}
 
+# TODO:(Leon) this sucks. can we just extend entity and put an type enum on them?
+# also can thses functions be global?
 func is_plant(entity):
 	return entity.name.match("plant*")
+
+func is_pred(entity):
+	return entity.name.match("pred*")
+
+func is_prey(entity):
+	return entity.name.match("prey*")
 
 func _physics_process(delta):
 	if food.values().size() > 0:
@@ -56,5 +64,5 @@ func _on_VisionArea_body_exited(body):
 			food.erase(body.name)
 
 func _on_EatRange_body_entered(body):
-	if body.name.match("pred*"):
+	if is_pred(body):
 		queue_free()
