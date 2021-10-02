@@ -28,6 +28,15 @@ func _physics_process(delta):
 		queue_free()
 
 	move_and_slide(velocity)
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		var ent = collision.collider
+		if ent.name.match("plant*"):
+			print("Munching plant ", ent.name, " ", ent.health)
+			ent.health -= 1
+		if ent.health <= 0:
+			print("killing plant")
+			ent.queue_free()
 
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
