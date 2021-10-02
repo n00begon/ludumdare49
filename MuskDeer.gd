@@ -39,3 +39,8 @@ func _on_VisionArea_body_exited(body):
 	if body.name.match("plant*"):
 			if food.has(body.name):
 				food.erase(body.name)
+
+
+func _on_EatRange_body_entered(body):
+	if body.name.match("pred*"):
+		queue_free()
