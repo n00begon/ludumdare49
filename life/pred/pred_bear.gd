@@ -11,9 +11,9 @@ var rng = RandomNumberGenerator.new()
 var walkCount = 100
 var debug = true
 var health = 100
-var gender = FEMALE
 
-# NOTE : our lifetime is short so this means one baby only
+# NOTE : our lifetime is short so this means one baby only i guess?
+var gender = FEMALE
 const MAX_PREGNANCY_COOLDOWN = 100
 var pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
 
@@ -52,11 +52,11 @@ func _physics_process(delta):
 		if walkCount < 0:
 			walkCount = 100
 			velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
+
 	move_and_slide(velocity)
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var ent = collision.collider
-		print(ent.name)
 		if is_bear(ent) and ent.gender != self.gender:
 			# which one is the female
 			var female = ent
