@@ -7,6 +7,9 @@ var walkCount = 100
 var health = 100
 var food = {}
 
+func is_plant(entity):
+	return entity.name.match("plant*")
+
 func _physics_process(delta):
 	if food.values().size() > 0:
 		var closest_food = null
@@ -31,27 +34,26 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var ent = collision.collider
-		if ent.name.match("plant*"):
-			print("Munching plant ", ent.name, " ", ent.health)
+		if is_plant(ent):
 			ent.health -= 1
-		if ent.health <= 0:
-			print("killing plant")
-			ent.queue_free()
+			if ent.health <= 0:
+				ent.queue_free()
 
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
 		queue_free()
 		game._spawn_deer(true)
 
+
 func _on_VisionArea_body_entered(body):
-	if body.name.match("plant*"):
+	if is_plant(body):
 		if !food.has(body.name):
 			food[body.name] = body
 
 func _on_VisionArea_body_exited(body):
-	if body.name.match("plant*"):
-			if food.has(body.name):
-				food.erase(body.name)
+	if is_plant(body):
+		if food.has(body.name):
+			food.erase(body.name)
 
 func _on_EatRange_body_entered(body):
 	if body.name.match("pred*"):
