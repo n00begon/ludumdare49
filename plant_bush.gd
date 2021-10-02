@@ -7,6 +7,7 @@ var debug = true
 # TODO(Leon): restore our health over time (but capped at health max)
 func _physics_process(delta):
 	if debug:
+		# HACK(Leon) I'm sorry :(
 		var label = self.get_child(3)
 		var labels = PoolStringArray([
 			"health : %s"

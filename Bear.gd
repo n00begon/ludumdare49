@@ -25,7 +25,7 @@ func _on_VisionArea_body_entered(body):
 	if body.name.begins_with("prey"):
 		modulate = Color(1, 0, 0, 1)
 		food = body
-		body.health -= 1
+		# body.health -= 1
 
 func _on_VisionArea_body_exited(body):
 	if body.name.begins_with("prey"):

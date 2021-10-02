@@ -60,6 +60,10 @@ func _physics_process(delta):
 			ent.health -= 1
 			if ent.health <= 0:
 				ent.queue_free()
+		elif is_pred(ent):
+			self.health -= 1
+			if self.health <= 0:
+				queue_free()
 
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
@@ -78,5 +82,6 @@ func _on_VisionArea_body_exited(body):
 			food.erase(body.name)
 
 func _on_EatRange_body_entered(body):
-	if is_pred(body):
-		queue_free()
+	pass
+	# if is_pred(body):
+	# queue_free()
