@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rabbit-dead.png-c6929da05b8587377053bb5d2c08f959.stex"
+path="res://.import/bear.png-2ce47d4aef4dae94824d37db93fbe781.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals/rabbit/rabbit-dead.png"
-dest_files=[ "res://.import/rabbit-dead.png-c6929da05b8587377053bb5d2c08f959.stex" ]
+source_file="res://assets/animals/dead/bear.png"
+dest_files=[ "res://.import/bear.png-2ce47d4aef4dae94824d37db93fbe781.stex" ]
 
 [params]
 

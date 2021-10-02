@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/tiger-dead.png-c6184ba7568f31ee4a7a37ced2a427d2.stex"
+path="res://.import/moose.png-272ddd5cb2bb52a806316e85ddb771cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals/tiger/tiger-dead.png"
-dest_files=[ "res://.import/tiger-dead.png-c6184ba7568f31ee4a7a37ced2a427d2.stex" ]
+source_file="res://assets/animals/dead/moose.png"
+dest_files=[ "res://.import/moose.png-272ddd5cb2bb52a806316e85ddb771cb.stex" ]
 
 [params]
 

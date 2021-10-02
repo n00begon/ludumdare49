@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/new-deer-dead.png-f7e75a10c69978c705db792ee5a3bb58.stex"
+path="res://.import/rabbit.png-6df61ec594875d1303e069b44461a91b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals/muskdeer/new-deer-dead.png"
-dest_files=[ "res://.import/new-deer-dead.png-f7e75a10c69978c705db792ee5a3bb58.stex" ]
+source_file="res://assets/animals/dead/rabbit.png"
+dest_files=[ "res://.import/rabbit.png-6df61ec594875d1303e069b44461a91b.stex" ]
 
 [params]
 

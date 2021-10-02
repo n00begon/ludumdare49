@@ -58,10 +58,9 @@ func _physics_process(delta):
 		if walkCount < 0:
 			walkCount = 100
 			velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
-			
+
 	if health <= 0:
-		# TODO(Leon): should turn into dead musk deer i guess?
-		queue_free()
+		return self.die()
 
 	move_and_slide(velocity)
 	for i in get_slide_count():
@@ -74,13 +73,17 @@ func _physics_process(delta):
 		elif is_pred(ent):
 			self.health -= 1
 			if self.health <= 0:
-				queue_free()
+				return self.die()
 
 	var game = get_parent()
 	if Global.is_outside_viewport(position):
 		queue_free()
 		game._spawn_moose(true)
 
+func die():
+	var game = get_parent()
+	game._spawn_dead("moose", position)
+	queue_free()
 
 func _on_VisionArea_body_entered(body):
 	if is_plant(body):
