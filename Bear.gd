@@ -17,9 +17,17 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 
 func _on_VisionArea_body_entered(body):
-	if body.name == "Bush":
+	if body.name.begins_with("prey"):
+		modulate = Color(1, 0, 0, 1)
 		food = body
+		body.health -= 1
+		
 
 func _on_VisionArea_body_exited(body):
-	if body.name == "Bush":
+	if body.name.begins_with("prey"):
+		modulate = Color(1, 1, 1, 1)
 		food = null
+
+
+func _on_Bear_ready():
+	pass

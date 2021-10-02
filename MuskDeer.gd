@@ -4,6 +4,7 @@ var run_speed = 250
 var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
 var walkCount = 100
+var health = 100
 var food = {}
 
 func _physics_process(delta):
@@ -21,7 +22,13 @@ func _physics_process(delta):
 		if walkCount < 0:
 			walkCount = 100
 			velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
+			
+	if health <= 0:
+		# TODO(Leon): should turn into dead musk deer i guess?
+		queue_free()
+			
 	move_and_slide(velocity)
+	
 
 func _on_VisionArea_body_entered(body):
 	if body.name.match("plant*"):
