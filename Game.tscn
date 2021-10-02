@@ -19,6 +19,7 @@ text = "Controls
 t	spawn tiger
 b	spawn bear
 m	spawn moose
+d	spawn deer
 r	spawn rabbit
 p    spawn plant
 q	quit"

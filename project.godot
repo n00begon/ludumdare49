@@ -30,16 +30,28 @@ _global_script_classes=[ {
 "path": "res://life/pred/pred_bear.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "prey_deer",
+"language": "GDScript",
+"path": "res://life/prey/prey_deer.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "prey_moose",
 "language": "GDScript",
 "path": "res://life/prey/prey_moose.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "prey_rabbit",
+"language": "GDScript",
+"path": "res://life/prey/prey_rabbit.gd"
 } ]
 _global_script_class_icons={
 "plant_bush": "",
 "plant_grass": "",
 "plant_tree": "",
 "pred_bear": "",
-"prey_moose": ""
+"prey_deer": "",
+"prey_moose": "",
+"prey_rabbit": ""
 }
 
 [application]
@@ -82,6 +94,11 @@ ui_moose={
 ui_tiger={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"unicode":0,"echo":false,"script":null)
+ ]
+}
+ui_rabbit={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 
