@@ -35,7 +35,7 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 
 	var newObj = scene.instance()
 	if type == 'plant':
-		newObj.get_node("Sprite").texture = load("res://assets/plants/" + str(rng.randi() % 7 + 1) + ".png")
+		newObj.get_node("Sprite").texture = load("res://assets/plants/" + str(rng.randi() % 5 + 1) + ".png")
 	var prefix = type + "_" + name
 	newObj.name = prefix + "_" + str(counters.get(prefix, 0))
 	print("Spawn: " + newObj.name)
