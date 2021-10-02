@@ -15,8 +15,8 @@ func _ready():
 func _spawn(type, name, scene):
 	var newObj = scene.instance()
 	var prefix = type + "_" + name
-	newObj.name = type + "_" + name +"_" + str(counters.get(prefix, 0))
-	print(newObj.name)
+	newObj.name = prefix + "_" + str(counters.get(prefix, 0))
+	print("Spawn: " + newObj.name)
 	var viewport = get_viewport().size
 	newObj.set_global_position(Vector2(rng.randi_range(0, viewport.x), rng.randi_range(0, viewport.y)))
 	get_parent().add_child(newObj)
