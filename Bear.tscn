@@ -10,6 +10,8 @@ radius = 609.985
 radius = 67.0291
 
 [node name="Bear" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -23,7 +25,7 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 1.18915, -2.37846 )
 shape = SubResource( 2 )
-disabled = true
 
+[connection signal="ready" from="." to="." method="_on_Bear_ready"]
 [connection signal="body_entered" from="VisionArea" to="." method="_on_VisionArea_body_entered"]
 [connection signal="body_exited" from="VisionArea" to="." method="_on_VisionArea_body_exited"]

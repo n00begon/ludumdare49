@@ -4,10 +4,10 @@
 [ext_resource path="res://plant_bush.gd" type="Script" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 59.3431
+radius = 36.646
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 159.379
+radius = 71.489
 
 [node name="plant_bush" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -22,6 +22,7 @@ shape = SubResource( 1 )
 [node name="EatRange" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatRange"]
+position = Vector2( -0.529724, -21.719 )
 shape = SubResource( 2 )
 
 [connection signal="body_entered" from="EatRange" to="." method="_on_EatRange_body_entered"]
