@@ -12,9 +12,9 @@ func _init():
 	var texture = null
 	match choose:
 		0: texture = load("res://assets/plants/grass.png")
-		1: texture = load("res://assets/plants/grass2.ppng")
+		1: texture = load("res://assets/plants/grass2.png")
 		2: texture = load("res://assets/plants/grass3.png")
-		3: texture = load("res://assets/plants/grass3.png")
+		3: texture = load("res://assets/plants/grass4.png")
 		4: texture = load("res://assets/plants/grass5.png")
 	self.get_node("WalkSprite").texture = texture
 	self.get_node("EatSprite").texture = texture
