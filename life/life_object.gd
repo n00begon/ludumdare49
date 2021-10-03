@@ -17,6 +17,9 @@ var health = 100
 var food = []
 var debug = true
 
+const HEALTH_REPRODUCTION_PENALTY = 50
+const HEALTH_EATING_BOOST = 0.5
+
 # NOTE : our lifetime is short so this means one baby only i guess?
 const FEMALE = 0
 const MALE = 1
@@ -99,6 +102,8 @@ func _physics_process(delta):
 			if female.pregnancy_cooldown < 0:
 				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
 				female.spawn_copy(false)
+				self.health -= HEALTH_REPRODUCTION_PENALTY
+				ent.health -= HEALTH_REPRODUCTION_PENALTY
 
 	# Respawn if outside the viewport
 	if Global.is_outside_viewport(position):
