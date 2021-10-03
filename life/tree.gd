@@ -9,7 +9,7 @@ func _init():
 	var texture = null
 	match choose:
 		0: texture = load("res://assets/plants/sapling.png")
-		1: texture = load("res://assets/plants/tree-1.ppng")
+		1: texture = load("res://assets/plants/tree-1.png")
 		2: texture = load("res://assets/plants/tree-2.png")
 		3: texture = load("res://assets/plants/tree-3.png")
 		4: texture = load("res://assets/plants/tree-4.png")

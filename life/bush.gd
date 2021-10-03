@@ -4,5 +4,12 @@ func _init():
 	self.species = 'bush'
 	self.is_eaten_by = ['deer', 'moose', 'bear']
 	self.scene = load("res://life/bush.tscn")
-	self.get_node("WalkSprite").texture = load("res://assets/plants/bush.png")
-	self.get_node("EatSprite").texture = load("res://assets/plants/bush.png")
+	self.rng.randomize()
+	var choose = self.rng.randi() % 3
+	var texture = null
+	match choose:
+		0: texture = load("res://assets/plants/bush.png")
+		1: texture = load("res://assets/plants/bush-2.png")
+		2: texture = load("res://assets/plants/bush-3.png")
+	self.get_node("WalkSprite").texture = texture
+	self.get_node("EatSprite").texture = texture
