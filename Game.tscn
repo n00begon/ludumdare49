@@ -16,16 +16,8 @@ margin_top = 71.0632
 margin_right = 764.253
 margin_bottom = 429.063
 custom_fonts/normal_font = ExtResource( 1 )
-text = "Controls
-t	spawn tiger
-b	spawn bear
-m	spawn moose
-d	spawn deer
-r	spawn rabbit
-f    spawn fox
-v	spawn beaver
-p    spawn plant
-esc quit"
+text = "
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }
