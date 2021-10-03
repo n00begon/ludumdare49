@@ -13,51 +13,9 @@ _global_script_classes=[ {
 "class": "life_object",
 "language": "GDScript",
 "path": "res://life/life_object.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "plant_bush",
-"language": "GDScript",
-"path": "res://life/plant/plant_bush.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "plant_grass",
-"language": "GDScript",
-"path": "res://life/plant/plant_grass.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "plant_tree",
-"language": "GDScript",
-"path": "res://life/plant/plant_tree.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "pred_bear",
-"language": "GDScript",
-"path": "res://life/pred/pred_bear.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "prey_deer",
-"language": "GDScript",
-"path": "res://life/prey/prey_deer.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "prey_moose",
-"language": "GDScript",
-"path": "res://life/prey/prey_moose.gd"
-}, {
-"base": "KinematicBody2D",
-"class": "prey_rabbit",
-"language": "GDScript",
-"path": "res://life/prey/prey_rabbit.gd"
 } ]
 _global_script_class_icons={
-"life_object": "",
-"plant_bush": "",
-"plant_grass": "",
-"plant_tree": "",
-"pred_bear": "",
-"prey_deer": "",
-"prey_moose": "",
-"prey_rabbit": ""
+"life_object": ""
 }
 
 [application]
