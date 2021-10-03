@@ -26,6 +26,10 @@ var pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
 
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
+func _ready():
+	rng.randomize()
+	velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
+
 func find_label():
 	var nc = self.get_child_count()
 	for i in nc:
@@ -70,6 +74,11 @@ func _physics_process(delta):
 		return self.die()
 
 	move_and_slide(velocity)
+	if velocity.x < 0:
+		$Sprite.flip_h = true
+	else:
+		$Sprite.flip_h = false
+	
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var ent = collision.collider
@@ -111,6 +120,8 @@ func spawn_copy(copyGender):
 			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
 		)
 	)
+	if rng.randi_range(0,1) == 1:
+		$Sprite.flip_h = true
 	get_parent().add_child(newObj)
 
 func respawn():
