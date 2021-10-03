@@ -16,6 +16,7 @@ var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
 
 func _ready():
+	rng.randomize()
 	OS.window_fullscreen = true
 
 func _process(delta):
