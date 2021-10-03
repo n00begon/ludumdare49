@@ -4,6 +4,8 @@ const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
 var mooseScene = load("res://life/prey/prey_moose.tscn")
+var deerScene = load("res://life/prey/prey_deer.tscn")
+var rabbitScene = load("res://life/prey/prey_rabbit.tscn")
 var bearScene = load("res://life/pred/pred_bear.tscn")
 var bushScene = load("res://life/plant/plant_bush.tscn")
 var grassScene = load("res://life/plant/plant_grass.tscn")
@@ -19,6 +21,12 @@ func _ready():
 
 func _spawn_moose(forceSpawn):
 	_spawn("prey", "mooseScene", mooseScene, "ui_moose", forceSpawn)
+
+func _spawn_deer(forceSpawn):
+	_spawn("prey", "deerScene", deerScene, "ui_deer", forceSpawn)
+
+func _spawn_rabbit(forceSpawn):
+	_spawn("prey", "rabbitScene", rabbitScene, "ui_rabbit", forceSpawn)
 
 func _spawn_bear(forceSpawn):
 	var bear = _spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
@@ -70,6 +78,8 @@ func _process(delta):
 		get_tree().quit()
 
 	_spawn_moose(false)
+	_spawn_deer(false)
+	_spawn_rabbit(false)
 	_spawn_bear(false)
 	_spawn_plant(false)
 
