@@ -5,8 +5,8 @@ const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
 var mooseScene = load("res://life/moose.tscn")
 var deerScene = load("res://life/deer.tscn")
-var rabbitScene = null # load("res://life/rabbit.tscn")
-var bearScene = null # load("res://life/bear.tscn")
+var rabbitScene = load("res://life/rabbit.tscn")
+var bearScene =  load("res://life/bear.tscn")
 var bushScene = load("res://life/bush.tscn")
 var grassScene = load("res://life/grass.tscn")
 var treeScene = load("res://life/tree.tscn")

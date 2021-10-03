@@ -6,7 +6,7 @@ extends KinematicBody2D
 var species = '' # moose, deer, bear, bush, etc.
 var eats = [] # moose, deer, bear, bush, etc.
 var is_eaten_by = [] # moose, deer, bear, bush, etc.
-var run_speed = 0
+var run_speed = 0 # should be zero for plants
 var scene = null # e.g., load("res://life/moose.tscn")
 # ====================================================
 
