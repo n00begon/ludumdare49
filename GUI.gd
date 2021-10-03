@@ -24,12 +24,7 @@ func _spawn(scene, actionKey):
 	var newObj = scene.instance()
 	newObj.gender = rng.randi_range(0, 1)
 	var viewport = get_viewport().size
-	newObj.set_global_position(
-		Vector2(
-			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.x - SPAWN_VIEWPORT_BORDER_PADDING),
-			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
-		)
-	)
+	newObj.set_global_position(Global.gen_rnd_point())
 	lastSpawnTime = OS.get_ticks_msec()
 	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
 		self.add_child(newObj)

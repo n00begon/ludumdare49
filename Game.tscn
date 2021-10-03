@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://labelfont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 
@@ -8,18 +7,19 @@
 script = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D" parent="."]
-z_index = 10
+position = Vector2( 413.71, 25.4214 )
+scale = Vector2( 5.15335, 4.04585 )
+z_index = -20
 
-[node name="Controls" type="RichTextLabel" parent="Node2D"]
-margin_left = 249.253
-margin_top = 71.0632
-margin_right = 764.253
-margin_bottom = 429.063
-custom_fonts/normal_font = ExtResource( 1 )
-text = "
-"
+[node name="GameViewport" type="ColorRect" parent="Node2D"]
+margin_right = 174.0
+margin_bottom = 173.0
+rect_scale = Vector2( 5.15335, 4.04585 )
+color = Color( 0.262745, 0.466667, 0.168627, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GuiContainer" parent="." instance=ExtResource( 2 )]
+margin_right = 392.0
+margin_bottom = 744.0

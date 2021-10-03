@@ -139,10 +139,7 @@ func spawn_copy(isOffScreen, ignoreSpeed):
 		newObj.gender = rng.randi() % 2
 	var viewport = get_viewport().size
 	newObj.set_global_position(
-		Vector2(
-			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.x - SPAWN_VIEWPORT_BORDER_PADDING),
-			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
-		)
+		Global.gen_rnd_point()
 	)
 
 	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
