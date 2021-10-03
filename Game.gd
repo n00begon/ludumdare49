@@ -12,6 +12,7 @@ var tigerScene = load("res://life/tiger.tscn")
 var bushScene = load("res://life/bush.tscn")
 var grassScene = load("res://life/grass.tscn")
 var treeScene = load("res://life/tree.tscn")
+var beaverScene = load("res://life/beaver.tscn")
 
 var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
@@ -31,6 +32,7 @@ func _process(delta):
 	_spawn(bearScene, "ui_bear")
 	_spawn(tigerScene, "ui_tiger")
 	_spawn(foxScene, "ui_fox")
+	_spawn(beaverScene, "ui_beaver")
 
 	var plant_type = rng.randi_range(1, 3)
 	match plant_type:
