@@ -83,7 +83,15 @@ func _on_BeaverButton_pressed():
 	_spawn(beaverScene, "ui_beaver")
 
 func _on_PlantButton_pressed():
-	_spawn(treeScene, "ui_plant")
+	rng.randomize()
+	var plant_type = rng.randi_range(1, 3)
+	match plant_type:
+		1:
+			_spawn(bushScene, "ui_plant")
+		2:
+			_spawn(grassScene, "ui_plant")
+		3:
+			_spawn(treeScene, "ui_plant")
 
 
 func _on_QuitButton_button_up():
