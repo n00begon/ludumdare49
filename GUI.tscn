@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
+[ext_resource path="res://labelfont.tres" type="DynamicFont" id=2]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchor_right = 1.0
@@ -17,59 +18,68 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 232.0
+margin_bottom = 403.0
 
 [node name="TigerButton" type="Button" parent="VBoxContainer"]
 margin_right = 984.0
-margin_bottom = 20.0
+margin_bottom = 39.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Tiger"
 
 [node name="BearButton" type="Button" parent="VBoxContainer"]
-margin_top = 24.0
+margin_top = 43.0
 margin_right = 984.0
-margin_bottom = 44.0
+margin_bottom = 82.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Bear"
 
 [node name="MooseButton" type="Button" parent="VBoxContainer"]
-margin_top = 48.0
+margin_top = 86.0
 margin_right = 984.0
-margin_bottom = 68.0
+margin_bottom = 125.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Moose"
 
 [node name="DeerButton" type="Button" parent="VBoxContainer"]
-margin_top = 72.0
+margin_top = 129.0
 margin_right = 984.0
-margin_bottom = 92.0
+margin_bottom = 168.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Deer"
 
 [node name="RabbitButton" type="Button" parent="VBoxContainer"]
-margin_top = 96.0
+margin_top = 172.0
 margin_right = 984.0
-margin_bottom = 116.0
+margin_bottom = 211.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Rabbit"
 
 [node name="FoxButton" type="Button" parent="VBoxContainer"]
-margin_top = 120.0
+margin_top = 215.0
 margin_right = 984.0
-margin_bottom = 140.0
+margin_bottom = 254.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Fox"
 
 [node name="BeaverButton" type="Button" parent="VBoxContainer"]
-margin_top = 144.0
+margin_top = 258.0
 margin_right = 984.0
-margin_bottom = 164.0
+margin_bottom = 297.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Beaver"
 
 [node name="PlantButton" type="Button" parent="VBoxContainer"]
-margin_top = 168.0
+margin_top = 301.0
 margin_right = 984.0
-margin_bottom = 188.0
+margin_bottom = 340.0
+custom_fonts/font = ExtResource( 2 )
 text = "Create Plant"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 192.0
+margin_top = 344.0
 margin_right = 984.0
-margin_bottom = 212.0
+margin_bottom = 383.0
+custom_fonts/font = ExtResource( 2 )
 text = "Quit"
 
 [connection signal="button_up" from="VBoxContainer/TigerButton" to="." method="_on_TigerButton_button_up"]
