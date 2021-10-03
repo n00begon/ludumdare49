@@ -43,11 +43,12 @@ func _physics_process(delta):
 			"health : %s",
 			"walkCount : %d",
 			"chasing food? : %d",
-			"pregnancy cooldown : %s"
+			"pregnancy cooldown : %s",
+			"gender : %s"
 		])
 
 		var text = labels.join("\n")
-		var label_str = text % [health, walkCount, food.size(), pregnancy_cooldown]
+		var label_str = text % [health, walkCount, food.size(), pregnancy_cooldown, self.gender]
 		label.set_text(label_str)
 	
 	if food.size() > 0:
@@ -88,17 +89,21 @@ func _physics_process(delta):
 
 			if female.pregnancy_cooldown < 0:
 				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
-				self.spawn_copy()
+				female.spawn_copy(false)
 
 	# Respawn if outside the viewport
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
-func spawn_copy():
+func spawn_copy(copyGender):
 	if run_speed == 0:
 		# no spawn for static objects
 		return
 	var newObj = scene.instance()
+	if copyGender:
+		newObj.gender = self.gender
+	else:
+		newObj.gender = rng.randi() % 2
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Vector2(
@@ -109,7 +114,7 @@ func spawn_copy():
 	get_parent().add_child(newObj)
 
 func respawn():
-	self.spawn_copy()
+	self.spawn_copy(true)
 	queue_free()
 
 func die():
