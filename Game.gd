@@ -4,54 +4,48 @@ const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
 var mooseScene = load("res://life/moose.tscn")
-var deerScene = load("res://life/deer.tscn")
-var rabbitScene = load("res://life/rabbit.tscn")
-var bearScene = load("res://life/bear.tscn")
-var bushScene = load("res://life/bush.tscn")
-var grassScene = load("res://life/grass.tscn")
-var treeScene = load("res://life/tree.tscn")
-var deadScene = load("res://dead/dead_animal.tscn")
-var rng = RandomNumberGenerator.new()
+var deerScene = null # load("res://life/deer.tscn")
+var rabbitScene = null # load("res://life/rabbit.tscn")
+var bearScene = null # load("res://life/bear.tscn")
+var bushScene = null # load("res://life/bush.tscn")
+var grassScene = null # load("res://life/grass.tscn")
+var treeScene = null # load("res://life/tree.tscn")
 
-var counters = {}
+var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
 
 func _ready():
 	OS.window_fullscreen = true
 
-func _spawn_moose(forceSpawn):
-	_spawn("prey", "mooseScene", mooseScene, "ui_moose", forceSpawn)
+func _process(delta):
+	# Quit on ESC or Q
+	if Input.is_action_pressed("ui_cancel") or Input.is_action_pressed("ui_quit"):
+		get_tree().quit()
 
-func _spawn_deer(forceSpawn):
-	_spawn("prey", "deerScene", deerScene, "ui_deer", forceSpawn)
+	_spawn(mooseScene, "ui_moose")
+	_spawn(deerScene, "ui_deer")
+	_spawn(rabbitScene, "ui_rabbit")
+	_spawn(bearScene, "ui_bear")
 
-func _spawn_rabbit(forceSpawn):
-	_spawn("prey", "rabbitScene", rabbitScene, "ui_rabbit", forceSpawn)
-
-func _spawn_bear(forceSpawn):
-	_spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
-
-func _spawn_plant(forceSpawn):
 	var plant_type = rng.randi_range(1, 3)
 	match plant_type:
 		1:
-			_spawn("plant", "bush", bushScene, "ui_plant", forceSpawn)
+			_spawn(bushScene, "ui_plant")
 		2:
-			_spawn("plant", "grass", grassScene, "ui_plant", forceSpawn)
+			_spawn(grassScene, "ui_plant")
 		3:
-			_spawn("plant", "tree", treeScene, "ui_plant", forceSpawn)
+			_spawn(treeScene, "ui_plant")
 
-func _spawn(type, name, scene, actionKey, forceSpawn):
-	if not Input.is_action_pressed(actionKey) and not forceSpawn:
+
+
+func _spawn(scene, actionKey):
+	if not Input.is_action_pressed(actionKey):
 		return
-	if OS.get_ticks_msec() - lastSpawnTime < MIN_SPAWN_INTERVAL_MS and not forceSpawn:
+	if OS.get_ticks_msec() - lastSpawnTime < MIN_SPAWN_INTERVAL_MS:
 		return
 
 	var newObj = scene.instance()
 	newObj.gender = rng.randi_range(0, 1)
-	var prefix = type + "_" + name
-	newObj.name = prefix + "_" + str(counters.get(prefix, 0))
-	print("Spawn: " + newObj.name)
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Vector2(
@@ -60,21 +54,10 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 		)
 	)
 	self.add_child(newObj)
-	counters[prefix] = counters.get(prefix, 0) + 1
 	lastSpawnTime = OS.get_ticks_msec()
 	return newObj
 
-func _process(delta):
-	# Quit on ESC or Q
-	if Input.is_action_pressed("ui_cancel") or Input.is_action_pressed("ui_quit"):
-		get_tree().quit()
-
-	_spawn_moose(false)
-	_spawn_deer(false)
-	_spawn_rabbit(false)
-	_spawn_bear(false)
-	_spawn_plant(false)
-
+var deadScene = load("res://dead/dead_animal.tscn")
 func _spawn_dead(name, position):
 	var newObj = deadScene.instance()
 	var texture = get_resized_texture(load("res://assets/animals/dead/" + name + ".png"), 0.25)
