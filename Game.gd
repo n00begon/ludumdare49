@@ -29,16 +29,7 @@ func _spawn_rabbit(forceSpawn):
 	_spawn("prey", "rabbitScene", rabbitScene, "ui_rabbit", forceSpawn)
 
 func _spawn_bear(forceSpawn):
-	var bear = _spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
-	if bear:
-		bear.gender = rng.randi_range(0, 1)
-
-func _spawn_dead(name, position):
-	var newObj = deadScene.instance()
-	var texture = get_resized_texture(load("res://assets/animals/dead/" + name + ".png"), 0.25)
-	newObj.set_global_position(position)
-	newObj.texture = texture
-	self.add_child(newObj)
+	_spawn("pred", "bear", bearScene, "ui_bear", forceSpawn)
 
 func _spawn_plant(forceSpawn):
 	var plant_type = rng.randi_range(1, 3)
@@ -57,6 +48,7 @@ func _spawn(type, name, scene, actionKey, forceSpawn):
 		return
 
 	var newObj = scene.instance()
+	newObj.gender = rng.randi_range(0, 1)
 	var prefix = type + "_" + name
 	newObj.name = prefix + "_" + str(counters.get(prefix, 0))
 	print("Spawn: " + newObj.name)
@@ -82,6 +74,13 @@ func _process(delta):
 	_spawn_rabbit(false)
 	_spawn_bear(false)
 	_spawn_plant(false)
+
+func _spawn_dead(name, position):
+	var newObj = deadScene.instance()
+	var texture = get_resized_texture(load("res://assets/animals/dead/" + name + ".png"), 0.25)
+	newObj.set_global_position(position)
+	newObj.texture = texture
+	self.add_child(newObj)
 
 func get_resized_texture(t: Texture, scale: float):
 	var image = t.get_data()

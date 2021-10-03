@@ -6,15 +6,15 @@ extends KinematicBody2D
 var species = '' # moose, deer, bear, bush, etc.
 var eats = [] # moose, deer, bear, bush, etc.
 var is_eaten_by = [] # moose, deer, bear, bush, etc.
-var run_speed = 250
+var run_speed = 0
+var scene = null # e.g., load("res://life/moose.tscn")
 # ====================================================
 
-var id = 0 # 1, 2, 3, etc.
-var velocity = Vector2.ZERO
 var rng = RandomNumberGenerator.new()
+var velocity = Vector2.ZERO
 var walkCount = 100
 var health = 100
-var food = {}
+var food = []
 var debug = true
 
 # NOTE : our lifetime is short so this means one baby only i guess?
@@ -24,6 +24,8 @@ var gender = FEMALE
 const MAX_PREGNANCY_COOLDOWN = 100
 var pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
 
+const SPAWN_VIEWPORT_BORDER_PADDING = 30
+
 func find_label():
 	var nc = self.get_child_count()
 	for i in nc:
@@ -32,7 +34,7 @@ func find_label():
 			return c
 	return null
 
-func _physics_process(delta):
+func _physics_process(delta):	
 	health -= 0.05
 	pregnancy_cooldown -= 1
 	if debug:
@@ -70,15 +72,15 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var ent = collision.collider
-		
+
 		# Eating
-		if ent.type in is_eaten_by:
+		if ent.species in is_eaten_by:
 			self.health -= 1
 			if self.health <= 0:
 				return self.die()
-		
+
 		# Reproduction
-		if ent.type == self.type and ent.gender != self.gender:
+		if ent.species == self.species and ent.gender != self.gender:
 			# which one is the female
 			var female = ent
 			if female.gender != FEMALE:
@@ -86,29 +88,38 @@ func _physics_process(delta):
 
 			if female.pregnancy_cooldown < 0:
 				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
-				var game = get_parent()
-				game._spawn_moose(true)
+				self.spawn_copy()
 
 	# Respawn if outside the viewport
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
+func spawn_copy():
+	if run_speed == 0:
+		# no spawn for static objects
+		return
+	var newObj = scene.instance()
+	var viewport = get_viewport().size
+	newObj.set_global_position(
+		Vector2(
+			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.x - SPAWN_VIEWPORT_BORDER_PADDING),
+			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
+		)
+	)
+	get_parent().add_child(newObj)
+
 func respawn():
-	var game = get_parent()
-	game._spawn_moose(true)
+	self.spawn_copy()
 	queue_free()
 
 func die():
-	var game = get_parent()
-	game._spawn_dead(species, position)
+	get_parent()._spawn_dead(species, position)
 	queue_free()
 
 func _on_VisionArea_body_entered(body):
-	if body.species in eats:
-		if not food.has(body.name):
-			food[body.name] = body
+	if (body.species in eats) and not (body in food):
+		food.append(body)
 
 func _on_VisionArea_body_exited(body):
-	if body.species in eats:
-		if food.has(body.name):
-			food.erase(body.name)
+	if body in food:
+		food.erase(body)
