@@ -104,13 +104,14 @@ func _physics_process(delta):
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
-func spawn_copy(copyGender):
+func spawn_copy(isOffScreen):
 	if run_speed == 0:
 		# no spawn for static objects
 		return
 	var newObj = scene.instance()
-	if copyGender:
+	if isOffScreen:
 		newObj.gender = self.gender
+		newObj.health = self.health
 	else:
 		newObj.gender = rng.randi() % 2
 	var viewport = get_viewport().size
