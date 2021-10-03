@@ -50,10 +50,10 @@ func _physics_process(delta):
 		var label_str = text % [health, walkCount, food.size(), pregnancy_cooldown]
 		label.set_text(label_str)
 	
-	if food.values().size() > 0:
+	if food.size() > 0:
 		var closest_food = null
 		var closest_distance = 100000000000000000
-		for f in food.values():
+		for f in food:
 			var distance = position.distance_to(f.position)
 			if distance < closest_distance:
 				closest_distance = distance

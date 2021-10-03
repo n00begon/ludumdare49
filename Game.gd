@@ -3,13 +3,13 @@ extends YSort
 const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
-var mooseScene = load("res://life/moose.tscn")
+var mooseScene = null # load("res://life/moose.tscn")
 var deerScene = null # load("res://life/deer.tscn")
 var rabbitScene = null # load("res://life/rabbit.tscn")
 var bearScene = null # load("res://life/bear.tscn")
-var bushScene = null # load("res://life/bush.tscn")
-var grassScene = null # load("res://life/grass.tscn")
-var treeScene = null # load("res://life/tree.tscn")
+var bushScene = load("res://life/bush.tscn")
+var grassScene = load("res://life/grass.tscn")
+var treeScene = load("res://life/tree.tscn")
 
 var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
