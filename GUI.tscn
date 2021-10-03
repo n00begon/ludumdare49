@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
 [ext_resource path="res://labelfont.tres" type="DynamicFont" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://assets/animals/deer/actual-deer.png" type="Texture" id=4]
 [ext_resource path="res://assets/animals/tiger/tiger.png" type="Texture" id=5]
 [ext_resource path="res://assets/animals/bear/new-bear.png" type="Texture" id=6]
+[ext_resource path="res://assets/animals/moose/new-deer.png" type="Texture" id=7]
+[ext_resource path="res://assets/animals/rabbit/rabbit.png" type="Texture" id=8]
+[ext_resource path="res://assets/animals/fox/fox.png" type="Texture" id=9]
+[ext_resource path="res://assets/animals/beaver/beaver.png" type="Texture" id=10]
+[ext_resource path="res://assets/plants/tree-1.png" type="Texture" id=11]
 
 [node name="MarginContainer" type="MarginContainer"]
 anchor_right = 1.0
@@ -22,7 +27,7 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 805.0
+margin_bottom = 1475.0
 
 [node name="TigerButton2" type="TextureButton" parent="VBoxContainer"]
 margin_right = 984.0
@@ -45,17 +50,21 @@ position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 
-[node name="MooseButton" type="Button" parent="VBoxContainer"]
+[node name="MooseButton" type="TextureButton" parent="VBoxContainer"]
 margin_top = 354.0
 margin_right = 984.0
-margin_bottom = 393.0
-custom_fonts/font = ExtResource( 2 )
-text = "Create Moose"
+margin_bottom = 527.0
+texture_normal = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/MooseButton"]
+position = Vector2( 88.1944, 83.1548 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 7 )
 
 [node name="DeerButton2" type="TextureButton" parent="VBoxContainer"]
-margin_top = 397.0
+margin_top = 531.0
 margin_right = 984.0
-margin_bottom = 570.0
+margin_bottom = 704.0
 texture_normal = ExtResource( 3 )
 
 [node name="Sprite" type="Sprite" parent="VBoxContainer/DeerButton2"]
@@ -63,38 +72,54 @@ position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
-[node name="RabbitButton" type="Button" parent="VBoxContainer"]
-margin_top = 574.0
+[node name="RabbitButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 708.0
 margin_right = 984.0
-margin_bottom = 613.0
-custom_fonts/font = ExtResource( 2 )
-text = "Create Rabbit"
+margin_bottom = 881.0
+texture_normal = ExtResource( 3 )
 
-[node name="FoxButton" type="Button" parent="VBoxContainer"]
-margin_top = 617.0
-margin_right = 984.0
-margin_bottom = 656.0
-custom_fonts/font = ExtResource( 2 )
-text = "Create Fox"
+[node name="Sprite" type="Sprite" parent="VBoxContainer/RabbitButton"]
+position = Vector2( 88.1944, 83.1548 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 8 )
 
-[node name="BeaverButton" type="Button" parent="VBoxContainer"]
-margin_top = 660.0
+[node name="FoxButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 885.0
 margin_right = 984.0
-margin_bottom = 699.0
-custom_fonts/font = ExtResource( 2 )
-text = "Create Beaver"
+margin_bottom = 1058.0
+texture_normal = ExtResource( 3 )
 
-[node name="PlantButton" type="Button" parent="VBoxContainer"]
-margin_top = 703.0
+[node name="Sprite" type="Sprite" parent="VBoxContainer/FoxButton"]
+position = Vector2( 88.1944, 83.1548 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 9 )
+
+[node name="BeaverButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 1062.0
 margin_right = 984.0
-margin_bottom = 742.0
-custom_fonts/font = ExtResource( 2 )
-text = "Create Plant"
+margin_bottom = 1235.0
+texture_normal = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/BeaverButton"]
+position = Vector2( 88.1944, 83.1548 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 10 )
+
+[node name="PlantButton" type="TextureButton" parent="VBoxContainer"]
+margin_top = 1239.0
+margin_right = 984.0
+margin_bottom = 1412.0
+texture_normal = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/PlantButton"]
+position = Vector2( 88.1944, 83.1548 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 11 )
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 746.0
+margin_top = 1416.0
 margin_right = 984.0
-margin_bottom = 785.0
+margin_bottom = 1455.0
 custom_fonts/font = ExtResource( 2 )
 text = "Quit"
 
