@@ -2,7 +2,7 @@ extends life_object
 
 func _init():
 	self.species = 'tree'
-	self.is_eaten_by = ['deer', 'moose', 'rabbit']
+	self.is_eaten_by = ['moose']
 	self.scene = load("res://life/tree.tscn")
 	var choose = self.rng.randi() % 3
 	var texture = null
