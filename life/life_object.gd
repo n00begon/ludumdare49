@@ -44,7 +44,10 @@ func find_label():
 			return c
 	return null
 
-func _physics_process(delta):	
+func _physics_process(delta):
+	if Input.is_action_pressed("ui_easter_egg") and run_speed == 0:
+		run_speed = 100
+
 	health -= 0.05
 	if eating.size() > 0:
 		health += HEALTH_EATING_BOOST
