@@ -6,4 +6,5 @@ func _init():
 	self.eats = ['rabbit']
 	self.scene = load("res://life/fox.tscn")
 	self.run_speed = 400
-	self.get_node("Sprite").texture = load("res://assets/animals/fox/fox.png")
+	self.get_node("WalkSprite").texture = load("res://assets/animals/fox/fox.png")
+	self.get_node("EatSprite").texture = load("res://assets/animals/fox/fox-eat.png")
