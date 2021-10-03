@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://labelfont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 
 [node name="Game" type="YSort"]
@@ -10,10 +11,10 @@ script = ExtResource( 3 )
 z_index = 10
 
 [node name="Controls" type="RichTextLabel" parent="Node2D"]
-margin_left = 25.0
-margin_top = 15.0
-margin_right = 540.0
-margin_bottom = 373.0
+margin_left = 249.253
+margin_top = 71.0632
+margin_right = 764.253
+margin_bottom = 429.063
 custom_fonts/normal_font = ExtResource( 1 )
 text = "Controls
 t	spawn tiger
@@ -28,3 +29,5 @@ esc quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MarginContainer" parent="." instance=ExtResource( 2 )]
