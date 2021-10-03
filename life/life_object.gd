@@ -75,19 +75,28 @@ func _physics_process(delta):
 
 	move_and_slide(velocity)
 	if velocity.x < 0:
-		$Sprite.flip_h = true
+		$WalkSprite.flip_h = true
+		$EatSprite.flip_h = true
 	else:
-		$Sprite.flip_h = false
-	
+		$WalkSprite.flip_h = false
+		$EatSprite.flip_h = false
+	$WalkSprite.visible = true
+	$EatSprite.visible = false
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		var ent = collision.collider
 
-		# Eating
+		# Being Eaten
 		if ent.species in is_eaten_by:
 			self.health -= 1
 			if self.health <= 0:
 				return self.die()
+
+		# Eating
+		if ent.species in eats:
+			$WalkSprite.visible = false
+			$EatSprite.visible = true
+		
 
 		# Reproduction
 		if ent.species == self.species and ent.gender != self.gender:
@@ -121,8 +130,6 @@ func spawn_copy(isOffScreen):
 			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
 		)
 	)
-	if rng.randi_range(0,1) == 1:
-		$Sprite.flip_h = true
 	get_parent().add_child(newObj)
 
 func respawn():
