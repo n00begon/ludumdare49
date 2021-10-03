@@ -55,7 +55,6 @@ func _spawn(scene, actionKey):
 		return
 
 	var newObj = scene.instance()
-	newObj.gender = rng.randi_range(0, 1)
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Global.gen_rnd_point()

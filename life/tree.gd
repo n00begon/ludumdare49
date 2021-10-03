@@ -1,6 +1,8 @@
 extends life_object
 
 func _init():
+	self.max_reproduction_rate = 2000
+	self.max_health = 200
 	self.species = 'tree'
 	self.is_eaten_by = ['moose', 'beaver']
 	self.scene = load("res://life/tree.tscn")

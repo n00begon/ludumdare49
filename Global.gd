@@ -16,4 +16,4 @@ func gen_rnd_point():
 	return Vector2(rng.randf_range(topLeft.x, bottomRight.x), rng.randf_range(topLeft.y, bottomRight.y))
 
 var life_object_counter = 0
-const MAX_LIFE_OBJECTS = 50
+const MAX_LIFE_OBJECTS = 100

@@ -8,33 +8,34 @@ var eats = [] # moose, deer, bear, bush, etc.
 var is_eaten_by = [] # moose, deer, bear, bush, etc.
 var run_speed = 0 # should be zero for plants
 var scene = null # e.g., load("res://life/moose.tscn")
+var max_reproduction_rate = 100
+var max_walk_count = 100
+var max_health = 100
 # ====================================================
-
-var rng = RandomNumberGenerator.new()
-var velocity = Vector2.ZERO
 var walkCount = 100
 var health = 100
+var rng = RandomNumberGenerator.new()
+var velocity = Vector2.ZERO
+var reproduction = 0
 var food = []
 var eating = []
 var debug = true
 
+
 const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
 
-const HEALTH_REPRODUCTION_PENALTY = 50
-const HEALTH_EATING_BOOST = 0.2
-
-# NOTE : our lifetime is short so this means one baby only i guess?
-const FEMALE = 0
-const MALE = 1
-var gender = FEMALE
-const MAX_PREGNANCY_COOLDOWN = 100
-var pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
+const HEALTH_REPRODUCTION_PENALTY = 0.2
+const HEALTH_REPRODUCTION_BASE = 0.5
+const HEALTH_EATING_BOOST = 0.4
 
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
 func _ready():
 	rng.randomize()
 	velocity = Vector2(rng.randf_range(-run_speed, run_speed), rng.randf_range(-run_speed, run_speed))
+	reproduction = rng.randi_range(0, max_reproduction_rate)
+	walkCount = rng.randi_range(0, max_walk_count)
+	health = rng.randi_range(max_health * 0.9, max_health)
 
 func find_label():
 	var nc = self.get_child_count()
@@ -52,20 +53,25 @@ func _physics_process(delta):
 	if eating.size() > 0:
 		health += HEALTH_EATING_BOOST
 		health = min(health, 100.0)
-	pregnancy_cooldown -= 1
+	reproduction = max(reproduction - 1, 0)
 	if debug:
 		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
 			"walkCount : %d",
 			"chasing food? : %d",
-			"pregnancy cooldown : %s",
-			"gender : %s"
+			"reproduction cooldown : %s"
 		])
 
 		var text = labels.join("\n")
-		var label_str = text % [health, walkCount, food.size(), pregnancy_cooldown, self.gender]
+		var label_str = text % [health, walkCount, food.size(), reproduction]
 		label.set_text(label_str)
+	
+	# Plant Reproduction
+	if species in ['bush', 'grass', 'tree']:
+		if reproduction == 0:
+			reproduction = max_reproduction_rate
+			spawn_copy(false, true)
 	
 	if food.size() > 0:
 		var closest_food = null
@@ -85,9 +91,6 @@ func _physics_process(delta):
 	if health <= 0:
 		return self.die()
 
-	if run_speed == 0 and rng.randf() < PLANT_SPAWN_CHANCE_PER_FRAME:
-		self.spawn_copy(false, true)
-
 	move_and_slide(velocity)
 	if velocity.x < 0:
 		$WalkSprite.flip_h = true
@@ -103,7 +106,7 @@ func _physics_process(delta):
 
 		# Being Eaten
 		if ent.species in is_eaten_by:
-			self.health -= 1
+			self.health -= 10
 			if self.health <= 0:
 				return self.die()
 
@@ -114,40 +117,38 @@ func _physics_process(delta):
 		
 
 		# Reproduction
-		if ent.species == self.species and ent.gender != self.gender:
-			# which one is the female
-			var female = ent
-			if female.gender != FEMALE:
-				female = self
-
-			if female.pregnancy_cooldown < 0:
-				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
-				female.spawn_copy(false, false)
-				self.health -= HEALTH_REPRODUCTION_PENALTY
-				ent.health -= HEALTH_REPRODUCTION_PENALTY
+		if health >= max_health * HEALTH_REPRODUCTION_BASE && reproduction == 0:
+			if ent.species == self.species:
+				var partner = ent
+				if partner.health >= partner.max_health * HEALTH_REPRODUCTION_BASE && partner.reproduction == 0:
+						reproduction = max_reproduction_rate
+						partner.reproduction = max_reproduction_rate
+						spawn_copy(false, false)
+						self.health *= HEALTH_REPRODUCTION_PENALTY
+						ent.health *= HEALTH_REPRODUCTION_PENALTY
 
 	# Respawn if outside the viewport
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
-func spawn_copy(isOffScreen, ignoreSpeed):
+func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
 	if run_speed == 0 and not ignoreSpeed:
 		# no spawn for static objects
 		return
 	var newObj = scene.instance()
+	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
+		get_parent().add_child(newObj)
+		Global.life_object_counter += 1
+
 	if isOffScreen:
-		newObj.gender = self.gender
 		newObj.health = self.health
-	else:
-		newObj.gender = rng.randi() % 2
+	elif not ignoreSpeed:
+		# Need to eat before reproducing
+		newObj.health *= HEALTH_REPRODUCTION_BASE
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Global.gen_rnd_point()
 	)
-
-	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
-		get_parent().add_child(newObj)
-		Global.life_object_counter += 1
 
 func respawn():
 	self.spawn_copy(true, false)
