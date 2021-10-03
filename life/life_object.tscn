@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://life/life_object.gd" type="Script" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 499.28
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 52.0814
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 67.3573
+
+[node name="life_object" type="KinematicBody2D"]
+collision_mask = 3
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -4.97009, -48.4939 )
+scale = Vector2( 0.263074, 0.263074 )
+
+[node name="VisionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisionArea"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 1.18915, -2.37846 )
+shape = SubResource( 2 )
+
+[node name="EatRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EatRange"]
+position = Vector2( 1.78381, -1.87089 )
+shape = SubResource( 3 )
+
+[node name="Label" type="Label" parent="."]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Leon"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_VisionArea_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_VisionArea_body_exited"]
+[connection signal="body_entered" from="EatRange" to="." method="_on_EatRange_body_entered"]

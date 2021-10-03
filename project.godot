@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
+"class": "life_object",
+"language": "GDScript",
+"path": "res://life/life_object.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "plant_bush",
 "language": "GDScript",
 "path": "res://life/plant/plant_bush.gd"
@@ -45,6 +50,7 @@ _global_script_classes=[ {
 "path": "res://life/prey/prey_rabbit.gd"
 } ]
 _global_script_class_icons={
+"life_object": "",
 "plant_bush": "",
 "plant_grass": "",
 "plant_tree": "",
@@ -94,11 +100,6 @@ ui_moose={
 ui_tiger={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":84,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_rabbit={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
  ]
 }
 
