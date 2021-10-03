@@ -123,3 +123,6 @@ func _on_VisionArea_body_entered(body):
 func _on_VisionArea_body_exited(body):
 	if body in food:
 		food.erase(body)
+
+func _on_EatRange_body_entered(body):
+	pass

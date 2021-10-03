@@ -3,8 +3,8 @@ extends YSort
 const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
 
-var mooseScene = null # load("res://life/moose.tscn")
-var deerScene = null # load("res://life/deer.tscn")
+var mooseScene = load("res://life/moose.tscn")
+var deerScene = load("res://life/deer.tscn")
 var rabbitScene = null # load("res://life/rabbit.tscn")
 var bearScene = null # load("res://life/bear.tscn")
 var bushScene = load("res://life/bush.tscn")
@@ -60,7 +60,10 @@ func _spawn(scene, actionKey):
 var deadScene = load("res://dead/dead_animal.tscn")
 func _spawn_dead(name, position):
 	var newObj = deadScene.instance()
-	var texture = get_resized_texture(load("res://assets/animals/dead/" + name + ".png"), 0.25)
+	var deadTextureFile = "res://assets/animals/dead/" + name + ".png"
+	if not File.new().file_exists(deadTextureFile):
+		return
+	var texture = get_resized_texture(load(deadTextureFile), 0.25)
 	newObj.set_global_position(position)
 	newObj.texture = texture
 	self.add_child(newObj)
