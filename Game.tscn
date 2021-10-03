@@ -8,13 +8,11 @@ script = ExtResource( 3 )
 
 [node name="Node2D" type="Node2D" parent="."]
 position = Vector2( 413.71, 25.4214 )
-scale = Vector2( 5.15335, 4.04585 )
 z_index = -20
 
 [node name="GameViewport" type="ColorRect" parent="Node2D"]
 margin_right = 174.0
 margin_bottom = 173.0
-rect_scale = Vector2( 5.15335, 4.04585 )
 color = Color( 0.262745, 0.466667, 0.168627, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
