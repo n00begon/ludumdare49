@@ -4,6 +4,7 @@ extends KinematicBody2D
 var rng = RandomNumberGenerator.new()
 var health = 100
 var debug = true
+var gender = 0
 
 func find_label():
 	var nc = self.get_child_count()

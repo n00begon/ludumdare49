@@ -8,6 +8,7 @@ var walkCount = 30
 var health = 50
 var food = {}
 var debug = true
+var gender = 0
 
 # TODO:(Leon) this sucks. can we just extend entity and put an type enum on them?
 # also can thses functions be global?
