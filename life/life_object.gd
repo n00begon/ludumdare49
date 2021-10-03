@@ -15,10 +15,11 @@ var velocity = Vector2.ZERO
 var walkCount = 100
 var health = 100
 var food = []
+var eating = []
 var debug = true
 
 const HEALTH_REPRODUCTION_PENALTY = 50
-const HEALTH_EATING_BOOST = 0.5
+const HEALTH_EATING_BOOST = 0.2
 
 # NOTE : our lifetime is short so this means one baby only i guess?
 const FEMALE = 0
@@ -43,6 +44,9 @@ func find_label():
 
 func _physics_process(delta):	
 	health -= 0.05
+	if eating.size() > 0:
+		health += HEALTH_EATING_BOOST
+		health = min(health, 100.0)
 	pregnancy_cooldown -= 1
 	if debug:
 		var label = find_label()
@@ -151,4 +155,9 @@ func _on_VisionArea_body_exited(body):
 		food.erase(body)
 
 func _on_EatRange_body_entered(body):
-	pass
+	if (body.species in eats) and not (body in eating):
+		eating.append(body)
+
+func _on_EatRange_body_exited(body):
+	if body in eating:
+		eating.erase(body)
