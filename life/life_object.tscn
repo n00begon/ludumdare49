@@ -39,7 +39,6 @@ shape = SubResource( 3 )
 [node name="Label" type="Label" parent="."]
 margin_right = 40.0
 margin_bottom = 14.0
-text = "Leon"
 __meta__ = {
 "_edit_use_anchors_": false
 }
