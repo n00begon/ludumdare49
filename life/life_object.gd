@@ -20,7 +20,7 @@ var reproduction = 0
 var food = []
 var eating = []
 var debug = true
-
+var partners = []
 
 const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
 
@@ -52,19 +52,21 @@ func _physics_process(delta):
 	health -= 0.05
 	if eating.size() > 0:
 		health += HEALTH_EATING_BOOST
-		health = min(health, 100.0)
+		health = min(health, max_health)
 	reproduction = max(reproduction - 1, 0)
 	if debug:
 		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
 			"walkCount : %d",
+			"partner? : %d",
 			"chasing food? : %d",
-			"reproduction cooldown : %s"
+			"reproduction cooldown : %s",
+			"can reproduce: %s"
 		])
 
 		var text = labels.join("\n")
-		var label_str = text % [health, walkCount, food.size(), reproduction]
+		var label_str = text % [health, walkCount, partners.size(), food.size(), reproduction, can_reproduce()]
 		label.set_text(label_str)
 	
 	# Plant Reproduction
@@ -72,6 +74,16 @@ func _physics_process(delta):
 		if reproduction == 0:
 			reproduction = max_reproduction_rate
 			spawn_copy(false, true)
+	
+	if partners.size() > 0:
+		var closest_partner = null
+		var closest_distance = 100000000000000000
+		for p in partners:
+			var distance = position.distance_to(p.position)
+			if distance < closest_distance:
+				closest_distance = distance
+				closest_partner = p
+		velocity = position.direction_to(closest_partner.position) * run_speed
 	
 	if food.size() > 0:
 		var closest_food = null
@@ -160,13 +172,22 @@ func die():
 	queue_free()
 	Global.life_object_counter -= 1
 
+func can_reproduce() -> bool:
+	return reproduction == 0 && health > max_health * HEALTH_REPRODUCTION_BASE
+
 func _on_VisionArea_body_entered(body):
+	if can_reproduce():
+		if body.species == species && body.can_reproduce():
+			partners.append(body)
+	
 	if (body.species in eats) and not (body in food):
 		food.append(body)
 
 func _on_VisionArea_body_exited(body):
 	if body in food:
 		food.erase(body)
+	if body in partners:
+		partners.erase(body)
 
 func _on_EatRange_body_entered(body):
 	if (body.species in eats) and not (body in eating):

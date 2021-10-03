@@ -1,7 +1,7 @@
 extends life_object
 
 func _init():
-	self.max_reproduction_rate = 300
+	self.max_reproduction_rate = 500
 	self.max_health = 100
 	self.species = 'bush'
 	self.is_eaten_by = ['deer', 'moose', 'bear']
