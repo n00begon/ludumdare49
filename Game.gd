@@ -20,9 +20,11 @@ var lastSpawnTime = 0
 func _ready():
 	rng.randomize()
 	OS.window_fullscreen = true
-	get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
+	#get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
 
 func _process(delta):
+	get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(450, 100))
+
 	# Quit on ESC
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
