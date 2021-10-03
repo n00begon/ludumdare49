@@ -7,6 +7,7 @@ var mooseScene = load("res://life/moose.tscn")
 var deerScene = load("res://life/deer.tscn")
 var rabbitScene = load("res://life/rabbit.tscn")
 var bearScene =  load("res://life/bear.tscn")
+var tigerScene = load("res://life/tiger.tscn")
 var bushScene = load("res://life/bush.tscn")
 var grassScene = load("res://life/grass.tscn")
 var treeScene = load("res://life/tree.tscn")
@@ -26,6 +27,7 @@ func _process(delta):
 	_spawn(deerScene, "ui_deer")
 	_spawn(rabbitScene, "ui_rabbit")
 	_spawn(bearScene, "ui_bear")
+	_spawn(tigerScene, "ui_tiger")
 
 	var plant_type = rng.randi_range(1, 3)
 	match plant_type:
