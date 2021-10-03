@@ -15,7 +15,11 @@ var velocity = Vector2.ZERO
 var walkCount = 100
 var health = 100
 var food = []
+var eating = []
 var debug = true
+
+const HEALTH_REPRODUCTION_PENALTY = 50
+const HEALTH_EATING_BOOST = 0.2
 
 # NOTE : our lifetime is short so this means one baby only i guess?
 const FEMALE = 0
@@ -40,6 +44,9 @@ func find_label():
 
 func _physics_process(delta):	
 	health -= 0.05
+	if eating.size() > 0:
+		health += HEALTH_EATING_BOOST
+		health = min(health, 100.0)
 	pregnancy_cooldown -= 1
 	if debug:
 		var label = find_label()
@@ -108,6 +115,8 @@ func _physics_process(delta):
 			if female.pregnancy_cooldown < 0:
 				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
 				female.spawn_copy(false)
+				self.health -= HEALTH_REPRODUCTION_PENALTY
+				ent.health -= HEALTH_REPRODUCTION_PENALTY
 
 	# Respawn if outside the viewport
 	if Global.is_outside_viewport(position):
@@ -130,15 +139,20 @@ func spawn_copy(isOffScreen):
 			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
 		)
 	)
-	get_parent().add_child(newObj)
+
+	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
+		get_parent().add_child(newObj)
+		Global.life_object_counter += 1
 
 func respawn():
 	self.spawn_copy(true)
 	queue_free()
+	Global.life_object_counter -= 1
 
 func die():
 	get_parent()._spawn_dead(species, position)
 	queue_free()
+	Global.life_object_counter -= 1
 
 func _on_VisionArea_body_entered(body):
 	if (body.species in eats) and not (body in food):
@@ -149,4 +163,9 @@ func _on_VisionArea_body_exited(body):
 		food.erase(body)
 
 func _on_EatRange_body_entered(body):
-	pass
+	if (body.species in eats) and not (body in eating):
+		eating.append(body)
+
+func _on_EatRange_body_exited(body):
+	if body in eating:
+		eating.erase(body)

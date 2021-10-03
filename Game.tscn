@@ -21,6 +21,7 @@ b	spawn bear
 m	spawn moose
 d	spawn deer
 r	spawn rabbit
+f    spawn fox
 p    spawn plant
 q	quit"
 __meta__ = {
