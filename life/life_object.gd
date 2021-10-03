@@ -18,6 +18,8 @@ var food = []
 var eating = []
 var debug = true
 
+const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
+
 const HEALTH_REPRODUCTION_PENALTY = 50
 const HEALTH_EATING_BOOST = 0.2
 
@@ -80,6 +82,9 @@ func _physics_process(delta):
 	if health <= 0:
 		return self.die()
 
+	if run_speed == 0 and rng.randf() < PLANT_SPAWN_CHANCE_PER_FRAME:
+		self.spawn_copy(false, true)
+
 	move_and_slide(velocity)
 	if velocity.x < 0:
 		$Sprite.flip_h = true
@@ -105,7 +110,7 @@ func _physics_process(delta):
 
 			if female.pregnancy_cooldown < 0:
 				female.pregnancy_cooldown = MAX_PREGNANCY_COOLDOWN
-				female.spawn_copy(false)
+				female.spawn_copy(false, false)
 				self.health -= HEALTH_REPRODUCTION_PENALTY
 				ent.health -= HEALTH_REPRODUCTION_PENALTY
 
@@ -113,8 +118,8 @@ func _physics_process(delta):
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
-func spawn_copy(isOffScreen):
-	if run_speed == 0:
+func spawn_copy(isOffScreen, ignoreSpeed):
+	if run_speed == 0 and not ignoreSpeed:
 		# no spawn for static objects
 		return
 	var newObj = scene.instance()
@@ -137,7 +142,7 @@ func spawn_copy(isOffScreen):
 		Global.life_object_counter += 1
 
 func respawn():
-	self.spawn_copy(true)
+	self.spawn_copy(true, false)
 	queue_free()
 	Global.life_object_counter -= 1
 
