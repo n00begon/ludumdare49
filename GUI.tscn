@@ -1,7 +1,6 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
-[ext_resource path="res://labelfont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/hud/blank-button-pressed.png" type="Texture" id=3]
 [ext_resource path="res://assets/animals/deer/actual-deer.png" type="Texture" id=4]
 [ext_resource path="res://assets/animals/tiger/tiger.png" type="Texture" id=5]
@@ -23,112 +22,112 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 1475.0
+margin_bottom = 767.0
 
-[node name="TigerButton2" type="TextureButton" parent="VBoxContainer"]
-margin_right = 984.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 174.0
+margin_bottom = 747.0
+
+[node name="TigerButton2" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+margin_right = 174.0
 margin_bottom = 173.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/TigerButton2"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer/TigerButton2"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 5 )
 
-[node name="BearButton" type="TextureButton" parent="VBoxContainer"]
+[node name="BearButton" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 margin_top = 177.0
-margin_right = 984.0
+margin_right = 174.0
 margin_bottom = 350.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/BearButton"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer/BearButton"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 6 )
 
-[node name="MooseButton" type="TextureButton" parent="VBoxContainer"]
+[node name="MooseButton" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 margin_top = 354.0
-margin_right = 984.0
+margin_right = 174.0
 margin_bottom = 527.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/MooseButton"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer/MooseButton"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 7 )
 
-[node name="DeerButton2" type="TextureButton" parent="VBoxContainer"]
+[node name="DeerButton2" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
 margin_top = 531.0
-margin_right = 984.0
+margin_right = 174.0
 margin_bottom = 704.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/DeerButton2"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer/DeerButton2"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 4 )
 
-[node name="RabbitButton" type="TextureButton" parent="VBoxContainer"]
-margin_top = 708.0
-margin_right = 984.0
-margin_bottom = 881.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 178.0
+margin_right = 352.0
+margin_bottom = 747.0
+
+[node name="RabbitButton" type="TextureButton" parent="HBoxContainer/VBoxContainer2"]
+margin_right = 174.0
+margin_bottom = 173.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/RabbitButton"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer2/RabbitButton"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 8 )
 
-[node name="FoxButton" type="TextureButton" parent="VBoxContainer"]
-margin_top = 885.0
-margin_right = 984.0
-margin_bottom = 1058.0
+[node name="FoxButton" type="TextureButton" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 177.0
+margin_right = 174.0
+margin_bottom = 350.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/FoxButton"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer2/FoxButton"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 9 )
 
-[node name="BeaverButton" type="TextureButton" parent="VBoxContainer"]
-margin_top = 1062.0
-margin_right = 984.0
-margin_bottom = 1235.0
+[node name="BeaverButton" type="TextureButton" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 354.0
+margin_right = 174.0
+margin_bottom = 527.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/BeaverButton"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer2/BeaverButton"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 10 )
 
-[node name="PlantButton" type="TextureButton" parent="VBoxContainer"]
-margin_top = 1239.0
-margin_right = 984.0
-margin_bottom = 1412.0
+[node name="PlantButton" type="TextureButton" parent="HBoxContainer/VBoxContainer2"]
+margin_top = 531.0
+margin_right = 174.0
+margin_bottom = 704.0
 texture_normal = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="VBoxContainer/PlantButton"]
+[node name="Sprite" type="Sprite" parent="HBoxContainer/VBoxContainer2/PlantButton"]
 position = Vector2( 88.1944, 83.1548 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 11 )
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
-margin_top = 1416.0
-margin_right = 984.0
-margin_bottom = 1455.0
-custom_fonts/font = ExtResource( 2 )
-text = "Quit"
-
-[connection signal="button_up" from="VBoxContainer/TigerButton2" to="." method="_on_TigerButton_button_up"]
-[connection signal="button_up" from="VBoxContainer/BearButton" to="." method="_on_Button_button_up"]
-[connection signal="button_up" from="VBoxContainer/MooseButton" to="." method="_on_MooseButton_button_up"]
-[connection signal="button_up" from="VBoxContainer/DeerButton2" to="." method="_on_DeerButton_button_up"]
-[connection signal="button_up" from="VBoxContainer/RabbitButton" to="." method="_on_RabbitButton_button_up"]
-[connection signal="button_up" from="VBoxContainer/FoxButton" to="." method="_on_FoxButton_button_up"]
-[connection signal="pressed" from="VBoxContainer/BeaverButton" to="." method="_on_BeaverButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/PlantButton" to="." method="_on_PlantButton_pressed"]
-[connection signal="button_up" from="VBoxContainer/QuitButton" to="." method="_on_QuitButton_button_up"]
+[connection signal="button_up" from="HBoxContainer/VBoxContainer/TigerButton2" to="." method="_on_TigerButton_button_up"]
+[connection signal="button_up" from="HBoxContainer/VBoxContainer/BearButton" to="." method="_on_Button_button_up"]
+[connection signal="button_up" from="HBoxContainer/VBoxContainer/MooseButton" to="." method="_on_MooseButton_button_up"]
+[connection signal="button_up" from="HBoxContainer/VBoxContainer/DeerButton2" to="." method="_on_DeerButton_button_up"]
+[connection signal="button_up" from="HBoxContainer/VBoxContainer2/RabbitButton" to="." method="_on_RabbitButton_button_up"]
+[connection signal="button_up" from="HBoxContainer/VBoxContainer2/FoxButton" to="." method="_on_FoxButton_button_up"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/BeaverButton" to="." method="_on_BeaverButton_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/PlantButton" to="." method="_on_PlantButton_pressed"]
