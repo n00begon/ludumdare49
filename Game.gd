@@ -56,9 +56,10 @@ func _spawn(scene, actionKey):
 			rng.randi_range(SPAWN_VIEWPORT_BORDER_PADDING, viewport.y - SPAWN_VIEWPORT_BORDER_PADDING)
 		)
 	)
-	self.add_child(newObj)
 	lastSpawnTime = OS.get_ticks_msec()
-	return newObj
+	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
+		self.add_child(newObj)
+		Global.life_object_counter += 1
 
 var deadScene = load("res://dead/dead_animal.tscn")
 func _spawn_dead(name, position):

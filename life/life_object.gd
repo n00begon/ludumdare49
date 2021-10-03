@@ -123,15 +123,19 @@ func spawn_copy(isOffScreen):
 	)
 	if rng.randi_range(0,1) == 1:
 		$Sprite.flip_h = true
-	get_parent().add_child(newObj)
+	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
+		get_parent().add_child(newObj)
+		Global.life_object_counter += 1
 
 func respawn():
 	self.spawn_copy(true)
 	queue_free()
+	Global.life_object_counter -= 1
 
 func die():
 	get_parent()._spawn_dead(species, position)
 	queue_free()
+	Global.life_object_counter -= 1
 
 func _on_VisionArea_body_entered(body):
 	if (body.species in eats) and not (body in food):
