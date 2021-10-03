@@ -23,7 +23,7 @@ d	spawn deer
 r	spawn rabbit
 f    spawn fox
 p    spawn plant
-q	quit"
+esc quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }

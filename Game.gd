@@ -21,8 +21,8 @@ func _ready():
 	OS.window_fullscreen = true
 
 func _process(delta):
-	# Quit on ESC or Q
-	if Input.is_action_pressed("ui_cancel") or Input.is_action_pressed("ui_quit"):
+	# Quit on ESC
+	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
 	_spawn(mooseScene, "ui_moose")
