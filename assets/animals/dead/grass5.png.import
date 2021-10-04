@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/flower2-dead.png-ab5b9b39dc6021cbe05828f359ed7e95.stex"
+path="res://.import/grass5.png-10bc351b731a9f8ce555c2e52d38fe00.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals/dead/flower2-dead.png"
-dest_files=[ "res://.import/flower2-dead.png-ab5b9b39dc6021cbe05828f359ed7e95.stex" ]
+source_file="res://assets/animals/dead/grass5.png"
+dest_files=[ "res://.import/grass5.png-10bc351b731a9f8ce555c2e52d38fe00.stex" ]
 
 [params]
 

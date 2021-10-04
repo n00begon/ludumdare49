@@ -4,6 +4,7 @@ extends KinematicBody2D
 # ====================================================
 # FIELDS TO OVERRIDE
 var species = '' # moose, deer, bear, bush, etc.
+var texture_name = ''
 var eats = [] # moose, deer, bear, bush, etc.
 var is_eaten_by = [] # moose, deer, bear, bush, etc.
 var run_speed = 0 # should be zero for plants
@@ -168,7 +169,7 @@ func respawn():
 	Global.life_object_counter -= 1
 
 func die():
-	get_parent()._spawn_dead(species, position)
+	get_parent()._spawn_dead(texture_name, position)
 	queue_free()
 	Global.life_object_counter -= 1
 

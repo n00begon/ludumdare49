@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bush-dead.png-a34a2a4658c52f74c2f8e08f84e5df6a.stex"
+path="res://.import/grass4.png-3f7dedab248d93797a6db84ccb6207b8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/animals/dead/bush-dead.png"
-dest_files=[ "res://.import/bush-dead.png-a34a2a4658c52f74c2f8e08f84e5df6a.stex" ]
+source_file="res://assets/animals/dead/grass4.png"
+dest_files=[ "res://.import/grass4.png-3f7dedab248d93797a6db84ccb6207b8.stex" ]
 
 [params]
 

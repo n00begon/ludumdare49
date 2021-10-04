@@ -3,6 +3,7 @@ const texture = "res://assets/animals/deer/actual-deer"
 
 func _init():
 	self.species = 'deer'
+	self.texture_name = 'deer'
 	self.is_eaten_by = ['bear', 'tiger']
 	self.eats = ['bush', 'grass']
 	self.scene = load("res://life/deer.tscn")
