@@ -2,7 +2,7 @@ extends YSort
 
 const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
-const MAX_CLICKS = 5
+const MAX_CLICKS = 8
 
 var mooseScene = load("res://life/moose.tscn")
 var deerScene = load("res://life/deer.tscn")

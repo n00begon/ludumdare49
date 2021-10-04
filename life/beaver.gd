@@ -7,7 +7,7 @@ func _init():
 	self.is_eaten_by = ['tiger', 'bear', 'fox']
 	self.eats = ['tree']
 	self.scene = load("res://life/beaver.tscn")
-	self.run_speed = 50
+	self.run_speed = 80
 	self.max_health = 50
 	self.max_reproduction_rate = 50
 	self.max_walk_count = 10
