@@ -19,7 +19,7 @@ var velocity = Vector2.ZERO
 var reproduction = 0
 var food = []
 var eating = []
-var debug = true
+var debug = false
 var partners = []
 
 const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
