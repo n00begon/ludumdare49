@@ -13,6 +13,7 @@ var bushScene = load("res://life/bush.tscn")
 var grassScene = load("res://life/grass.tscn")
 var treeScene = load("res://life/tree.tscn")
 var beaverScene = load("res://life/beaver.tscn")
+var deadScene = load("res://dead/dead_animal.tscn")
 
 var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
@@ -21,6 +22,10 @@ func _ready():
 	VisualServer.set_default_clear_color(Color(0.27451, 0.537255, 0.231373, 1))
 	rng.randomize()
 	OS.window_fullscreen = true
+
+	if !Global.sandbox:
+		_spawn_starting_objects()
+	
 	#get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
 
 func _process(delta):
@@ -47,7 +52,15 @@ func _process(delta):
 		3:
 			_spawn(treeScene, "ui_plant")
 
+func _spawn_starting_objects():
+	for b in 3:
+		_spawn_life(bushScene, true)
 
+	for g in 5:
+		_spawn_life(grassScene, true)
+
+	for t in 2:
+		_spawn_life(treeScene, true)
 
 func _spawn(scene, actionKey):
 	if not Input.is_action_pressed(actionKey):
@@ -55,17 +68,24 @@ func _spawn(scene, actionKey):
 	if OS.get_ticks_msec() - lastSpawnTime < MIN_SPAWN_INTERVAL_MS:
 		return
 
+	lastSpawnTime = OS.get_ticks_msec()
+	_spawn_life(scene, actionKey == "ui_plant")
+
+func _spawn_life(scene: PackedScene, plant: bool):
 	var newObj = scene.instance()
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Global.gen_rnd_point()
 	)
-	lastSpawnTime = OS.get_ticks_msec()
-	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
-		self.add_child(newObj)
-		Global.life_object_counter += 1
+	if plant:
+		if Global.plant_counter < Global.MAX_PLANT_OBJECTS:
+			self.add_child(newObj)
+			Global.plant_counter += 1
+	else:
+		if Global.animal_counter < Global.MAX_ANIMAL_OBJECTS:
+			self.add_child(newObj)
+			Global.animal_counter += 1
 
-var deadScene = load("res://dead/dead_animal.tscn")
 func _spawn_dead(name, position):
 	var newObj = deadScene.instance()
 	var deadTextureFile = "res://assets/animals/dead/" + name + ".png"

@@ -25,9 +25,16 @@ func _spawn(scene, actionKey):
 	var viewport = get_viewport().size
 	newObj.set_global_position(Global.gen_rnd_point())
 	lastSpawnTime = OS.get_ticks_msec()
-	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
-		self.add_child(newObj)
-		Global.life_object_counter += 1
+	var plant = actionKey == "ui_plant"
+	
+	if plant:
+		if Global.plant_counter < Global.MAX_PLANT_OBJECTS:
+			self.add_child(newObj)
+			Global.plant_counter += 1
+	else:
+		if Global.animal_counter < Global.MAX_ANIMAL_OBJECTS:
+			self.add_child(newObj)
+			Global.animal_counter += 1
 		
 var deadScene = load("res://dead/dead_animal.tscn")
 func _spawn_dead(name, position):

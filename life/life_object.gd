@@ -20,7 +20,7 @@ var velocity = Vector2.ZERO
 var reproduction = 0
 var food = []
 var eating = []
-var debug = false
+
 var partners = []
 
 const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
@@ -55,7 +55,7 @@ func _physics_process(delta):
 		health += HEALTH_EATING_BOOST
 		health = min(health, max_health)
 	reproduction = max(reproduction - 1, 0)
-	if debug:
+	if Global.debug:
 		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
@@ -149,9 +149,16 @@ func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
 		# no spawn for static objects
 		return
 	var newObj = scene.instance()
-	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
-		get_parent().add_child(newObj)
-		Global.life_object_counter += 1
+	var plant = species in ['grass', 'bush', 'tree']
+	
+	if plant:
+		if Global.plant_counter < Global.MAX_PLANT_OBJECTS:
+			get_parent().add_child(newObj)
+			Global.plant_counter += 1
+	else:
+		if Global.animal_counter < Global.MAX_ANIMAL_OBJECTS:
+			get_parent().add_child(newObj)
+			Global.animal_counter += 1
 
 	if isOffScreen:
 		newObj.health = self.health
@@ -166,12 +173,22 @@ func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
 func respawn():
 	self.spawn_copy(true, false)
 	queue_free()
-	Global.life_object_counter -= 1
+	var plant = species in ['grass', 'bush', 'tree']
+	
+	if plant:
+		Global.plant_counter -= 1
+	else:
+		Global.animal_counter -= 1
 
 func die():
 	get_parent()._spawn_dead(texture_name, position)
 	queue_free()
-	Global.life_object_counter -= 1
+	var plant = species in ['grass', 'bush', 'tree']
+	
+	if plant:
+		Global.plant_counter -= 1
+	else:
+		Global.animal_counter -= 1
 
 func can_reproduce() -> bool:
 	return reproduction == 0 && health > max_health * HEALTH_REPRODUCTION_BASE
