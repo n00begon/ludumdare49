@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://GUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/font/Inter-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/hud/blank-button-pressed.png" type="Texture" id=3]
 [ext_resource path="res://assets/animals/deer/actual-deer.png" type="Texture" id=4]
 [ext_resource path="res://assets/animals/tiger/tiger.png" type="Texture" id=5]
@@ -10,6 +11,10 @@
 [ext_resource path="res://assets/animals/fox/fox.png" type="Texture" id=9]
 [ext_resource path="res://assets/animals/beaver/beaver.png" type="Texture" id=10]
 [ext_resource path="res://assets/plants/tree-1.png" type="Texture" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+font_data = ExtResource( 2 )
 
 [node name="GuiContainer" type="MarginContainer"]
 anchor_right = 1.0
@@ -26,7 +31,7 @@ __meta__ = {
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1004.0
-margin_bottom = 742.0
+margin_bottom = 826.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_right = 984.0
@@ -130,10 +135,11 @@ texture = ExtResource( 11 )
 [node name="LabelContainer" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 708.0
 margin_right = 984.0
-margin_bottom = 722.0
+margin_bottom = 782.0
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer/LabelContainer"]
-margin_bottom = 14.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 1 )
 
 [connection signal="button_up" from="VBoxContainer/HBoxContainer/VBoxContainerL/TigerButton2" to="." method="_on_TigerButton_button_up"]
 [connection signal="button_up" from="VBoxContainer/HBoxContainer/VBoxContainerL/BearButton" to="." method="_on_Button_button_up"]
