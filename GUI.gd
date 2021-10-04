@@ -8,8 +8,9 @@ func get_resized_texture(t: Texture, scale: float):
 	var itex = ImageTexture.new()
 	itex.create_from_image(image)
 	return itex
-		
 
+func set_score(score: int):
+	$VBoxContainer/LabelContainer/ScoreLabel.text = "Score " + str(score)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

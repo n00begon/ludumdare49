@@ -24,7 +24,6 @@ func _ready():
 	OS.window_fullscreen = true
 	get_node("GuiContainer").connect("spawn_life", self, "_spawn_signal")
 	if !Global.sandbox:
-		print("Spawning starting objects")
 		_spawn_starting_objects()
 	
 	#get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
@@ -64,6 +63,7 @@ func _spawn_signal(type: String):
 					_spawn(treeScene, "ui_plant", 2)
 
 func _spawn_starting_objects():
+	$GuiContainer.set_score(100)
 	for b in 3:
 		_spawn_life(bushScene, true)
 
