@@ -9,45 +9,70 @@
 size = 50
 font_data = ExtResource( 3 )
 
-[node name="Intro" type="Node2D"]
+[node name="CenterContainer" type="CenterContainer"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_right = 40.0
+margin_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Stable" type="TextureButton" parent="."]
-margin_left = 5.0
-margin_top = -2.0
-margin_right = 127.0
-margin_bottom = 90.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 636.0
+margin_bottom = 650.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 636.0
+margin_bottom = 650.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Instructions" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+margin_right = 636.0
+margin_bottom = 252.0
+custom_fonts/normal_font = SubResource( 1 )
+bbcode_enabled = true
+bbcode_text = "[center]Spawn animals and plants to maintain a stable ecosystem in the Fickle Forest.[/center]"
+text = "Spawn animals and plants to create a stable ecosystem in the Fickle Forest."
+fit_content_height = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stable" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+margin_top = 256.0
+margin_right = 636.0
+margin_bottom = 451.0
 shortcut_in_tooltip = false
+action_mode = 0
 texture_normal = ExtResource( 2 )
 stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Instructions" type="RichTextLabel" parent="."]
-margin_left = 221.825
-margin_top = 120.587
-margin_right = 1073.83
-margin_bottom = 491.587
-custom_fonts/normal_font = SubResource( 1 )
-bbcode_enabled = true
-bbcode_text = "[center]Spawn animals and plants to maintain a stable ecosystem in the Fickle Forest.[/center]"
-text = "Spawn animals and plants to maintain a stable ecosystem in the Fickle Forest."
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sandbox" type="TextureButton" parent="."]
-margin_left = 10.0
-margin_top = -4.0
-margin_right = 646.0
-margin_bottom = 191.0
+[node name="Sandbox" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+margin_top = 455.0
+margin_right = 636.0
+margin_bottom = 650.0
 shortcut_in_tooltip = false
+action_mode = 0
 texture_normal = ExtResource( 4 )
 stretch_mode = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="pressed" from="Stable" to="." method="_on_Stable_pressed"]
-[connection signal="pressed" from="Sandbox" to="." method="_on_Sandbox_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Stable" to="." method="_on_Stable_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Sandbox" to="." method="_on_Sandbox_pressed"]
