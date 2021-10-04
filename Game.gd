@@ -35,6 +35,9 @@ func _ready():
 	get_node("GuiContainer").connect("spawn_life", self, "_spawn_signal")
 	if !Global.sandbox:
 		_spawn_starting_objects()
+		$GuiContainer.show_score()
+	else:
+		$GuiContainer.hide_score()
 	
 	#get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
 

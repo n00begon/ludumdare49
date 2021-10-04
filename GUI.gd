@@ -12,6 +12,12 @@ func get_resized_texture(t: Texture, scale: float):
 func set_score(score: int):
 	$VBoxContainer/LabelContainer/ScoreLabel.text = "Score " + str(score)
 
+func hide_score():
+	$VBoxContainer/LabelContainer/ScoreLabel.visible = false
+	
+func show_score():
+	$VBoxContainer/LabelContainer/ScoreLabel.visible = true
+	
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
