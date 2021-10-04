@@ -35,6 +35,7 @@ func _ready():
 	rng.randomize()
 	OS.window_fullscreen = true
 	get_node("GuiContainer").connect("spawn_life", self, "_spawn_signal")
+	$End.hide()
 	if !Global.sandbox:
 		_spawn_starting_objects()
 		$GuiContainer.show_labels()
@@ -49,6 +50,10 @@ func _process(delta):
 	# Quit on ESC
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
+
+	if !Global.sandbox && clicks_remaining <= 0 && Global.animal_counter <= 0:
+		$End.set_score(_calculate_score())
+		$End.show()
 
 func _spawn_signal(type: String):
 	if !Global.sandbox && clicks_remaining <= 0:
@@ -146,7 +151,10 @@ func update_generation_count(species: String, generation: int):
 		update_score()
 		
 func update_score():
+	$GuiContainer.set_score(_calculate_score())
+
+func _calculate_score() -> int:
 	var total = 0
 	for score in Array(generation_counter.values()):
 		total += score
-	$GuiContainer.set_score(total)
+	return total

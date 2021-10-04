@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
+[ext_resource path="res://End.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
 
@@ -21,3 +22,5 @@ __meta__ = {
 [node name="GuiContainer" parent="." instance=ExtResource( 2 )]
 margin_right = 392.0
 margin_bottom = 744.0
+
+[node name="End" parent="." instance=ExtResource( 1 )]

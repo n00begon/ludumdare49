@@ -51,3 +51,4 @@ func _on_PlantButton_pressed():
 
 func _on_QuitButton_button_up():
 	get_tree().quit()
+

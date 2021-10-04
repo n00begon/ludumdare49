@@ -44,7 +44,7 @@ margin_bottom = 252.0
 custom_fonts/normal_font = SubResource( 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Spawn animals and plants to maintain a stable ecosystem in the Fickle Forest.[/center]"
-text = "Spawn animals and plants to create a stable ecosystem in the Fickle Forest."
+text = "Spawn animals and plants to maintain a stable ecosystem in the Fickle Forest."
 fit_content_height = true
 __meta__ = {
 "_edit_use_anchors_": false
