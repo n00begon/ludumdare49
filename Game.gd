@@ -14,6 +14,16 @@ var grassScene = load("res://life/grass.tscn")
 var treeScene = load("res://life/tree.tscn")
 var beaverScene = load("res://life/beaver.tscn")
 var deadScene = load("res://dead/dead_animal.tscn")
+var generation_counter = {
+	"moose": 0, 
+	"deer": 0, 
+	"rabbit": 0, 
+	"bear": 0, 
+	"fox": 0, 
+	"tiger": 0,
+	"beaver": 0 
+}
+	
 
 var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
@@ -63,7 +73,6 @@ func _spawn_signal(type: String):
 					_spawn(treeScene, "ui_plant", 2)
 
 func _spawn_starting_objects():
-	$GuiContainer.set_score(100)
 	for b in 3:
 		_spawn_life(bushScene, true)
 
@@ -72,6 +81,7 @@ func _spawn_starting_objects():
 
 	for t in 2:
 		_spawn_life(treeScene, true)
+	update_score()
 
 func _spawn(scene, actionKey, amount):
 	if OS.get_ticks_msec() - lastSpawnTime < MIN_SPAWN_INTERVAL_MS:
@@ -91,6 +101,7 @@ func _spawn_life(scene: PackedScene, plant: bool):
 	newObj.set_global_position(
 		Global.gen_rnd_point()
 	)
+	newObj.connect("new_spawn", self, "update_generation_count")
 	if plant:
 		if Global.plant_counter < Global.MAX_PLANT_OBJECTS:
 			self.add_child(newObj)
@@ -116,3 +127,15 @@ func get_resized_texture(t: Texture, scale: float):
 	var itex = ImageTexture.new()
 	itex.create_from_image(image)
 	return itex
+	
+func update_generation_count(species: String, generation: int):
+	printt("Updating generation count", species, generation)
+	if generation_counter[species] < generation:
+		generation_counter[species] = generation
+		update_score()
+		
+func update_score():
+	var total = 0
+	for score in Array(generation_counter.values()):
+		total += score
+	$GuiContainer.set_score(total)

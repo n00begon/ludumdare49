@@ -1,6 +1,7 @@
 class_name life_object
 extends KinematicBody2D
 
+signal new_spawn(species, generation)
 # ====================================================
 # FIELDS TO OVERRIDE
 var species = '' # moose, deer, bear, bush, etc.
@@ -22,6 +23,7 @@ var food = []
 var eating = []
 
 var partners = []
+var generation = 0
 
 const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
 
@@ -74,7 +76,8 @@ func _physics_process(delta):
 	if species in ['bush', 'grass', 'tree']:
 		if reproduction == 0:
 			reproduction = max_reproduction_rate
-			spawn_copy(false, true)
+			# Not tracking plant generations
+			spawn_copy(false, true, 0)
 	
 	if partners.size() > 0:
 		var closest_partner = null
@@ -136,7 +139,9 @@ func _physics_process(delta):
 				if partner.health >= partner.max_health * HEALTH_REPRODUCTION_BASE && partner.reproduction == 0:
 						reproduction = max_reproduction_rate
 						partner.reproduction = max_reproduction_rate
-						spawn_copy(false, false)
+						var new_generation = max(generation, partner.generation) + 1
+						spawn_copy(false, false, new_generation)
+						emit_signal("new_spawn", species, new_generation)
 						self.health *= HEALTH_REPRODUCTION_PENALTY
 						ent.health *= HEALTH_REPRODUCTION_PENALTY
 
@@ -144,7 +149,7 @@ func _physics_process(delta):
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
-func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
+func spawn_copy(isOffScreen: bool, ignoreSpeed: bool, new_generation: int):
 	if run_speed == 0 and not ignoreSpeed:
 		# no spawn for static objects
 		return
@@ -158,6 +163,7 @@ func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
 	else:
 		if Global.animal_counter < Global.MAX_ANIMAL_OBJECTS:
 			get_parent().add_child(newObj)
+
 			Global.animal_counter += 1
 
 	if isOffScreen:
@@ -165,13 +171,14 @@ func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
 	elif not ignoreSpeed:
 		# Need to eat before reproducing
 		newObj.health *= HEALTH_REPRODUCTION_BASE
+	newObj.generation = new_generation
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Global.gen_rnd_point()
 	)
 
 func respawn():
-	self.spawn_copy(true, false)
+	self.spawn_copy(true, false, generation)
 	queue_free()
 	var plant = species in ['grass', 'bush', 'tree']
 	
