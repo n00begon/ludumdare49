@@ -10,24 +10,19 @@ func get_resized_texture(t: Texture, scale: float):
 	return itex
 
 func set_score(score: int):
-	$VBoxContainer/LabelContainer/ScoreLabel.text = "Score " + str(score)
+	$VBoxContainer/HLabelContainer/VLabelContainer/ScoreLabel.text = "Score " + str(score)
 
-func hide_score():
-	$VBoxContainer/LabelContainer/ScoreLabel.visible = false
+func set_clicks(clicks: int):
+	$VBoxContainer/HLabelContainer/VLabelContainer/InstructionLabel.text = "Clicks " + str(clicks)
+
+func hide_labels():
+	$VBoxContainer/HLabelContainer/VLabelContainer/ScoreLabel.visible = false
+	$VBoxContainer/HLabelContainer/VLabelContainer/InstructionLabel.visible = false
+
+func show_labels():
+	$VBoxContainer/HLabelContainer/VLabelContainer/ScoreLabel.visible = true
+	$VBoxContainer/HLabelContainer/VLabelContainer/InstructionLabel.visible = true
 	
-func show_score():
-	$VBoxContainer/LabelContainer/ScoreLabel.visible = true
-	
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
-
-
 func _on_Button_button_up():
 	emit_signal("spawn_life", "ui_bear")
 

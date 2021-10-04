@@ -2,6 +2,7 @@ extends YSort
 
 const MIN_SPAWN_INTERVAL_MS = 100
 const SPAWN_VIEWPORT_BORDER_PADDING = 30
+const MAX_CLICKS = 5
 
 var mooseScene = load("res://life/moose.tscn")
 var deerScene = load("res://life/deer.tscn")
@@ -27,6 +28,7 @@ var generation_counter = {
 
 var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
+var clicks_remaining = MAX_CLICKS
 
 func _ready():
 	VisualServer.set_default_clear_color(Color(0.27451, 0.537255, 0.231373, 1))
@@ -35,9 +37,9 @@ func _ready():
 	get_node("GuiContainer").connect("spawn_life", self, "_spawn_signal")
 	if !Global.sandbox:
 		_spawn_starting_objects()
-		$GuiContainer.show_score()
+		$GuiContainer.show_labels()
 	else:
-		$GuiContainer.hide_score()
+		$GuiContainer.hide_labels()
 	
 	#get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
 
@@ -49,7 +51,12 @@ func _process(delta):
 		get_tree().quit()
 
 func _spawn_signal(type: String):
-
+	if !Global.sandbox && clicks_remaining <= 0:
+		return
+	
+	clicks_remaining -= 1
+	$GuiContainer.set_clicks(clicks_remaining)
+	
 	match type:
 		"ui_moose":
 			_spawn(mooseScene, "ui_moose", 2)
@@ -85,6 +92,7 @@ func _spawn_starting_objects():
 	for t in 2:
 		_spawn_life(treeScene, true)
 	update_score()
+	$GuiContainer.set_clicks(clicks_remaining)
 
 func _spawn(scene, actionKey, amount):
 	if OS.get_ticks_msec() - lastSpawnTime < MIN_SPAWN_INTERVAL_MS:
