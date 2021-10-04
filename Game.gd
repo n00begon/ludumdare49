@@ -18,6 +18,7 @@ var rng = RandomNumberGenerator.new()
 var lastSpawnTime = 0
 
 func _ready():
+	VisualServer.set_default_clear_color(Color(0.27451, 0.537255, 0.231373, 1))
 	rng.randomize()
 	OS.window_fullscreen = true
 	#get_node("Node2D/GameViewport").set_size(get_viewport().size - Vector2(100, -100))
