@@ -8,7 +8,7 @@ func _init():
 	self.eats = ['bear', 'fox', 'deer', 'moose']
 	self.scene = load("res://life/tiger.tscn")
 	self.run_speed = 350
-	self.max_health = 500
+	self.max_health = 150
 	self.max_reproduction_rate = 100
 	self.max_walk_count = 300
 	self.get_node("WalkSprite").texture = load(texture + ".png")

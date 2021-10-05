@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/forest.mp3" type="AudioStream" id=1]
+[ext_resource path="res://End.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Game.gd" type="Script" id=3]
+[ext_resource path="res://assets/forest.mp3" type="AudioStream" id=4]
 
 [node name="Game" type="YSort"]
 script = ExtResource( 3 )
@@ -24,5 +25,9 @@ margin_right = 392.0
 margin_bottom = 744.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 1 )
+stream = ExtResource( 4 )
 autoplay = true
+
+[node name="End" parent="." instance=ExtResource( 1 )]
+size_flags_horizontal = 3
+size_flags_vertical = 3

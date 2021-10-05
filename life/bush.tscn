@@ -4,4 +4,5 @@
 [ext_resource path="res://life/bush.gd" type="Script" id=2]
 
 [node name="bush" instance=ExtResource( 1 )]
+collision_layer = 1024
 script = ExtResource( 2 )

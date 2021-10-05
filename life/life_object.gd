@@ -1,6 +1,7 @@
 class_name life_object
 extends KinematicBody2D
 
+signal new_spawn(species, generation)
 # ====================================================
 # FIELDS TO OVERRIDE
 var species = '' # moose, deer, bear, bush, etc.
@@ -20,8 +21,9 @@ var velocity = Vector2.ZERO
 var reproduction = 0
 var food = []
 var eating = []
-var debug = false
+
 var partners = []
+var generation = 0
 
 const PLANT_SPAWN_CHANCE_PER_FRAME = 0.0001
 
@@ -55,7 +57,7 @@ func _physics_process(delta):
 		health += HEALTH_EATING_BOOST
 		health = min(health, max_health)
 	reproduction = max(reproduction - 1, 0)
-	if debug:
+	if Global.debug:
 		var label = find_label()
 		var labels = PoolStringArray([
 			"health : %s",
@@ -74,7 +76,8 @@ func _physics_process(delta):
 	if species in ['bush', 'grass', 'tree']:
 		if reproduction == 0:
 			reproduction = max_reproduction_rate
-			spawn_copy(false, true)
+			# Not tracking plant generations
+			spawn_copy(false, true, 0)
 	
 	if partners.size() > 0:
 		var closest_partner = null
@@ -136,7 +139,9 @@ func _physics_process(delta):
 				if partner.health >= partner.max_health * HEALTH_REPRODUCTION_BASE && partner.reproduction == 0:
 						reproduction = max_reproduction_rate
 						partner.reproduction = max_reproduction_rate
-						spawn_copy(false, false)
+						var new_generation = max(generation, partner.generation) + 1
+						spawn_copy(false, false, new_generation)
+						emit_signal("new_spawn", species, new_generation)
 						self.health *= HEALTH_REPRODUCTION_PENALTY
 						ent.health *= HEALTH_REPRODUCTION_PENALTY
 
@@ -144,34 +149,53 @@ func _physics_process(delta):
 	if Global.is_outside_viewport(position):
 		self.respawn()
 
-func spawn_copy(isOffScreen: bool, ignoreSpeed: bool):
+func spawn_copy(isOffScreen: bool, ignoreSpeed: bool, new_generation: int):
 	if run_speed == 0 and not ignoreSpeed:
 		# no spawn for static objects
 		return
 	var newObj = scene.instance()
-	if Global.life_object_counter < Global.MAX_LIFE_OBJECTS:
-		get_parent().add_child(newObj)
-		Global.life_object_counter += 1
+	var plant = species in ['grass', 'bush', 'tree']
+	
+	if plant:
+		if Global.plant_counter < Global.MAX_PLANT_OBJECTS:
+			get_parent().add_child(newObj)
+			Global.plant_counter += 1
+	else:
+		if Global.animal_counter < Global.MAX_ANIMAL_OBJECTS:
+			get_parent().add_child(newObj)
+
+			Global.animal_counter += 1
 
 	if isOffScreen:
 		newObj.health = self.health
 	elif not ignoreSpeed:
 		# Need to eat before reproducing
 		newObj.health *= HEALTH_REPRODUCTION_BASE
+	newObj.generation = new_generation
 	var viewport = get_viewport().size
 	newObj.set_global_position(
 		Global.gen_rnd_point()
 	)
 
 func respawn():
-	self.spawn_copy(true, false)
+	self.spawn_copy(true, false, generation)
 	queue_free()
-	Global.life_object_counter -= 1
+	var plant = species in ['grass', 'bush', 'tree']
+	
+	if plant:
+		Global.plant_counter -= 1
+	else:
+		Global.animal_counter -= 1
 
 func die():
 	get_parent()._spawn_dead(texture_name, position)
 	queue_free()
-	Global.life_object_counter -= 1
+	var plant = species in ['grass', 'bush', 'tree']
+	
+	if plant:
+		Global.plant_counter -= 1
+	else:
+		Global.animal_counter -= 1
 
 func can_reproduce() -> bool:
 	return reproduction == 0 && health > max_health * HEALTH_REPRODUCTION_BASE

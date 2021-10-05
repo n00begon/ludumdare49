@@ -2,7 +2,7 @@ extends life_object
 
 func _init():
 	self.max_reproduction_rate = 100
-	self.max_health = 20
+	self.max_health = 50
 	self.species = 'grass'
 	self.is_eaten_by = ['deer', 'rabbit']
 	self.scene = load("res://life/grass.tscn")
